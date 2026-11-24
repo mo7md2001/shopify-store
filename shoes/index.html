@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StepUp | ستيب أب — متجر أحذية رجالي وحريمي ورياضي</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--dark:#121212;--dark2:#1c1c1e;--orange:#ff6b00;--orange2:#ff8c1a;--yellow:#ffc400;--bg:#f4f4f5;--green:#16a34a;--red:#dc2626}
+body{font-family:'Cairo',system-ui,sans-serif;background:var(--bg);color:#18181b}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+.topbar{background:#000;color:#fff;text-align:center;padding:9px 12px;font-size:13px;font-weight:700}
+.topbar b{color:var(--yellow)}
+header{position:sticky;top:0;z-index:50;background:var(--dark);color:#fff;box-shadow:0 4px 18px rgba(0,0,0,.25)}
+.header-in{max-width:1200px;margin:auto;display:flex;align-items:center;gap:16px;padding:14px 16px;flex-wrap:wrap}
+.logo{font-size:28px;font-weight:900;line-height:1}
+.logo span{color:var(--orange)}
+.logo small{display:block;font-size:11px;color:#a1a1aa;font-weight:700;letter-spacing:1px}
+.search{flex:1;min-width:220px;display:flex;background:#fff;border-radius:999px;overflow:hidden;border:2px solid var(--orange)}
+.search input{flex:1;border:0;padding:11px 16px;font-family:inherit;font-size:15px;outline:none}
+.search button{background:var(--orange);color:#fff;border:0;padding:0 22px;font-weight:800}
+.nav{display:flex;gap:18px;font-weight:700;font-size:14px;align-items:center}
+.nav a:hover{color:var(--orange)}
+.cart-btn{position:relative;background:var(--orange);color:#fff;border:0;border-radius:999px;padding:10px 18px;font-weight:900;font-size:15px}
+.cart-count{position:absolute;top:-8px;left:-8px;background:var(--yellow);color:#000;min-width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;border:2px solid #fff}
+.hero{background:linear-gradient(135deg,#111 0%,#2a1500 55%,#ff6b00 130%);color:#fff;overflow:hidden}
+.hero-in{max-width:1200px;margin:auto;padding:48px 16px 42px;display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:center}
+.hero h1{font-size:clamp(32px,5vw,56px);font-weight:900;line-height:1.05}
+.hero h1 span{color:var(--orange)}
+.hero p{margin:14px 0 20px;color:#d4d4d8;font-size:17px;line-height:1.7}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+.btn{background:var(--orange);color:#fff;border:0;padding:13px 26px;border-radius:999px;font-weight:900;font-size:16px}
+.btn.dark{background:#fff;color:#111}
+.btn:hover{filter:brightness(1.08)}
+.hero-badges{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}
+.hero-badges span{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);padding:7px 12px;border-radius:999px;font-size:13px;font-weight:700}
+.hero-shoe{background:linear-gradient(145deg,#ff8c1a,#ff3d00);border-radius:28px;padding:28px;text-align:center;transform:rotate(-2deg);box-shadow:0 20px 40px rgba(0,0,0,.35)}
+.hero-shoe .big{font-size:110px;line-height:1;filter:drop-shadow(0 12px 12px rgba(0,0,0,.3))}
+.hero-shoe b{display:block;font-size:22px;margin-top:8px}
+.hero-shoe p{color:#fff;opacity:.9;font-size:14px}
+.hero-shoe .price{font-size:32px;font-weight:900;color:#fff}
+.hero-shoe .price s{font-size:18px;opacity:.7;margin-inline-start:8px}
+.strip{max-width:1200px;margin:18px auto 0;padding:0 16px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.strip div{background:#fff;border-radius:14px;padding:14px;text-align:center;font-weight:800;font-size:14px;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+.strip div small{display:block;color:#71717a;font-weight:700;margin-top:3px}
+main{max-width:1200px;margin:auto;padding:22px 16px 60px}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:12px;flex-wrap:wrap;margin:10px 0 16px}
+.section-head h2{font-size:28px;font-weight:900}
+.section-head h2:after{content:"";display:block;width:70px;height:5px;background:var(--orange);border-radius:99px;margin-top:6px}
+.section-head p{color:#71717a;font-weight:700}
+.filters{background:#fff;border-radius:16px;padding:16px;box-shadow:0 2px 12px rgba(0,0,0,.06);margin-bottom:18px}
+.cats{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.cat{border:2px solid #e4e4e7;background:#fff;padding:8px 16px;border-radius:999px;font-weight:800;font-size:14px}
+.cat.active{background:var(--dark);color:#fff;border-color:var(--dark)}
+.cat.active.orange{background:var(--orange);border-color:var(--orange)}
+.filter-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.filter-row select,.filter-row input{padding:10px 12px;border:2px solid #e4e4e7;border-radius:10px;font-family:inherit;font-weight:700;font-size:14px;background:#fff}
+.results{font-weight:800;color:#52525b}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.card{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 3px 14px rgba(0,0,0,.07);display:flex;flex-direction:column;transition:.2s;border:1px solid #eee}
+.card:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(0,0,0,.14)}
+.visual{height:168px;display:flex;align-items:center;justify-content:center;font-size:88px;position:relative;cursor:pointer}
+.visual .badge{position:absolute;top:12px;right:12px;background:var(--red);color:#fff;font-size:12px;font-weight:900;padding:5px 10px;border-radius:999px}
+.visual .badge.new{background:var(--green)}
+.visual .quick{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.85);color:#fff;border:0;padding:7px 14px;border-radius:999px;font-size:13px;font-weight:800;opacity:0;transition:.2s;white-space:nowrap}
+.card:hover .quick{opacity:1}
+.body{padding:14px;display:flex;flex-direction:column;gap:8px;flex:1}
+.cat-tag{font-size:12px;font-weight:900;color:var(--orange)}
+.body h3{font-size:17px;line-height:1.35;cursor:pointer}
+.stars{color:#f59e0b;font-size:14px;font-weight:800}
+.stars small{color:#71717a}
+.desc{color:#52525b;font-size:13.5px;line-height:1.6;flex:1}
+.price-row{display:flex;align-items:baseline;gap:8px}
+.price{font-size:22px;font-weight:900;color:#111}
+.old{color:#a1a1aa;text-decoration:line-through;font-weight:700}
+.save{color:var(--green);font-weight:900;font-size:13px}
+.sizes{display:flex;gap:6px;flex-wrap:wrap}
+.sizes span{font-size:12px;font-weight:800;color:#71717a}
+.size{border:1.5px solid #d4d4d8;background:#fff;min-width:38px;padding:6px 4px;border-radius:8px;font-weight:800;font-size:13px;text-align:center}
+.size.sel{background:var(--dark);color:#fff;border-color:var(--dark)}
+.colors{display:flex;gap:8px;align-items:center}
+.colors span{font-size:12px;font-weight:800;color:#71717a}
+.dot{width:24px;height:24px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 0 2px #d4d4d8;cursor:pointer}
+.dot.sel{box-shadow:0 0 0 3px var(--orange)}
+.add{background:var(--orange);color:#fff;border:0;padding:12px;border-radius:12px;font-weight:900;font-size:15px;width:100%}
+.add:hover{background:#e65c00}
+.empty{background:#fff;border-radius:16px;padding:40px;text-align:center;font-weight:800;color:#71717a;display:none}
+/* Drawer / Modal */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:90;display:none}
+.overlay.show{display:block}
+.drawer{position:fixed;top:0;bottom:0;left:0;width:min(430px,94vw);background:#fff;z-index:100;transform:translateX(-105%);transition:.3s;display:flex;flex-direction:column;box-shadow:0 0 40px rgba(0,0,0,.3)}
+.drawer.open{transform:none}
+.drawer-head{background:var(--dark);color:#fff;padding:18px;display:flex;justify-content:space-between;align-items:center}
+.drawer-head h3{font-size:19px}
+.close{background:rgba(255,255,255,.15);color:#fff;border:0;width:36px;height:36px;border-radius:50%;font-size:18px}
+.drawer-body{flex:1;overflow:auto;padding:16px}
+.cart-item{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid #eee}
+.cart-item .thumb{width:64px;height:64px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:34px;flex-shrink:0}
+.cart-item h4{font-size:14.5px;line-height:1.4}
+.cart-item small{color:#71717a;font-weight:700}
+.qty{display:flex;align-items:center;gap:8px;margin-top:8px}
+.qty button{width:28px;height:28px;border-radius:8px;border:1.5px solid #d4d4d8;background:#fff;font-weight:900}
+.qty b{min-width:20px;text-align:center}
+.remove{color:var(--red);background:none;border:0;font-weight:800;font-size:13px}
+.promo{display:flex;gap:8px;margin:14px 0}
+.promo input{flex:1;padding:11px;border:2px dashed #d4d4d8;border-radius:10px;font-family:inherit;font-weight:800}
+.promo button{background:var(--dark);color:#fff;border:0;padding:0 16px;border-radius:10px;font-weight:900}
+.promo-msg{font-size:13px;font-weight:800;margin:-6px 0 10px}
+.promo-msg.ok{color:var(--green)} .promo-msg.err{color:var(--red)}
+.totals{background:#f9fafb;border-radius:14px;padding:14px;display:grid;gap:8px;font-weight:800}
+.totals div{display:flex;justify-content:space-between}
+.totals .grand{font-size:19px;border-top:2px dashed #d4d4d8;padding-top:10px}
+.totals .grand b{color:var(--orange)}
+.ship-note{font-size:13px;color:var(--green);font-weight:800;text-align:center;margin-top:8px}
+.drawer-foot{padding:16px;border-top:1px solid #eee}
+.checkout-btn{width:100%;background:var(--orange);color:#fff;border:0;padding:14px;border-radius:12px;font-weight:900;font-size:17px}
+.form label{display:block;font-weight:800;font-size:14px;margin:12px 0 5px}
+.form input,.form textarea,.form select{width:100%;padding:12px;border:2px solid #e4e4e7;border-radius:10px;font-family:inherit;font-size:15px}
+.form input.err,.form textarea.err{border-color:var(--red);background:#fef2f2}
+.field-err{color:var(--red);font-size:12.5px;font-weight:800;display:none;margin-top:4px}
+.cod-box{background:#fff7ed;border:2px solid #fdba74;border-radius:12px;padding:12px;font-weight:800;font-size:14px;margin-top:14px}
+.modal{position:fixed;inset:0;z-index:110;display:none;align-items:center;justify-content:center;padding:16px}
+.modal.show{display:flex}
+.modal-card{background:#fff;border-radius:20px;max-width:820px;width:100%;max-height:90vh;overflow:auto;position:relative}
+.modal-x{position:absolute;top:14px;left:14px;z-index:2;background:#000;color:#fff;border:0;width:38px;height:38px;border-radius:50%;font-size:18px}
+.qv{display:grid;grid-template-columns:1fr 1fr}
+.qv-visual{min-height:320px;display:flex;align-items:center;justify-content:center;font-size:150px}
+.qv-body{padding:26px}
+.qv-body h2{font-size:24px;line-height:1.3}
+.qv-body p{color:#52525b;line-height:1.7;margin:10px 0}
+.feat{list-style:none;margin:12px 0;display:grid;gap:6px;font-weight:700;font-size:14px}
+.feat li:before{content:"✓ ";color:var(--green);font-weight:900}
+.success{text-align:center;padding:34px 20px}
+.success .tick{width:84px;height:84px;background:#dcfce7;color:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:44px;margin:0 auto 14px}
+.success h2{font-size:26px}
+.order-no{background:#111;color:#fff;display:inline-block;padding:10px 18px;border-radius:999px;font-weight:900;margin:12px 0;font-size:18px;letter-spacing:1px}
+.order-no span{color:var(--yellow)}
+.summary{background:#f9fafb;border-radius:14px;padding:16px;text-align:right;margin:16px 0;display:grid;gap:8px;font-weight:700}
+.summary div{display:flex;justify-content:space-between;gap:10px}
+.toast{position:fixed;bottom:20px;right:50%;transform:translateX(50%) translateY(80px);background:#111;color:#fff;padding:13px 20px;border-radius:999px;font-weight:800;z-index:200;transition:.3s;box-shadow:0 10px 30px rgba(0,0,0,.3);white-space:nowrap}
+.toast.show{transform:translateX(50%)}
+footer{background:#111;color:#a1a1aa;padding:32px 16px;text-align:center}
+footer b{color:#fff;font-size:20px}
+footer b span{color:var(--orange)}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.hero-in{grid-template-columns:1fr}.strip{grid-template-columns:repeat(2,1fr)}.qv{grid-template-columns:1fr}.qv-visual{min-height:220px;font-size:110px}}
+@media(max-width:520px){.grid{grid-template-columns:1fr}.header-in{flex-direction:column;align-items:stretch}.nav{justify-content:center}}
+</style>
+</head>
+<body>
+<div class="topbar">🚚 شحن مجاني للطلبات فوق <b>1,500 جنيه</b> داخل القاهرة والجيزة &nbsp;•&nbsp; خصم 20% بكود <b>STEP20</b> &nbsp;•&nbsp; الدفع عند الاستلام 💵</div>
+<header>
+  <div class="header-in">
+    <div class="logo">StepUp <span>ستيب أب</span><small>SHOES STORE • EGYPT</small></div>
+    <div class="search"><input id="searchInput" type="search" placeholder="ابحث عن حذاء… مثال: رياضي، جلد، أبيض"><button onclick="applyFilters()">بحث</button></div>
+    <nav class="nav"><a href="#products" onclick="setCat('all')">كل الأحذية</a><a href="#products" onclick="setCat('men')">رجالي</a><a href="#products" onclick="setCat('women')">حريمي</a><a href="#products" onclick="setCat('sports')">رياضي</a></nav>
+    <button class="cart-btn" onclick="openCart()">🛒 السلة <span class="cart-count" id="cartCount">0</span></button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-in">
+    <div>
+      <h1>امشِ بثقة.<br><span>اختر حذاءك الصح.</span></h1>
+      <p>أكبر تشكيلة أحذية رجالي وحريمي ورياضي في مصر — خامات أصلية، مقاسات مظبوطة، وأسعار على قد الإيد. جرّب، قيس، وادفع عند الاستلام.</p>
+      <div class="hero-cta"><a class="btn" href="#products">تسوّق الآن 👟</a><button class="btn dark" onclick="setCat('sports');document.getElementById('products').scrollIntoView({behavior:'smooth'})">تشكيلة رياضي ⚡</button></div>
+      <div class="hero-badges"><span>⭐ 4.8 متوسط التقييم</span><span>🔁 استبدال مجاني 14 يوم</span><span>💵 الدفع عند الاستلام</span><span>📦 شحن لكل المحافظات</span></div>
+    </div>
+    <div class="hero-shoe"><div class="big">👟</div><b>رانر برو — Runner Pro</b><p>الأكثر مبيعاً هذا الشهر • خفيف ومريح للجري والمشي اليومي</p><div class="price">1,899 ج.م <s>2,499 ج.م</s></div><br><button class="btn dark" onclick="quickView(1)">شوف التفاصيل</button></div>
+  </div>
+</section>
+
+<div class="strip">
+  <div>🚚 شحن سريع<small>24 - 72 ساعة لكل مصر</small></div>
+  <div>💵 الدفع عند الاستلام<small>كاش أو إنستا باي عند التوصيل</small></div>
+  <div>🔁 استبدال مجاني<small>14 يوم لو المقاس مش مظبوط</small></div>
+  <div>🛡️ خامة أصلية<small>ضمان ضد عيوب الصناعة</small></div>
+</div>
+
+<main id="products">
+  <div class="section-head"><div><h2>تسوّق الأحذية</h2><p>12 موديل مختار بعناية — اختر مقاسك ولونك وأضف للسلة</p></div><div class="results" id="resultsCount"></div></div>
+
+  <div class="filters">
+    <div class="cats" id="cats">
+      <button class="cat active orange" data-cat="all" onclick="setCat('all')">الكل 👟</button>
+      <button class="cat" data-cat="men" onclick="setCat('men')">رجالي 👞</button>
+      <button class="cat" data-cat="women" onclick="setCat('women')">حريمي 👠</button>
+      <button class="cat" data-cat="sports" onclick="setCat('sports')">رياضي 🏃</button>
+      <button class="cat" data-cat="formal" onclick="setCat('formal')">رسمي / كلاسيك 🎩</button>
+      <button class="cat" data-cat="sneakers" onclick="setCat('sneakers')">سنيكرز ✨</button>
+    </div>
+    <div class="filter-row">
+      <label style="font-weight:800">السعر:</label>
+      <select id="priceFilter" onchange="applyFilters()">
+        <option value="all">كل الأسعار</option><option value="under1500">أقل من 1,500 ج.م</option>
+        <option value="1500-2000">1,500 — 2,000 ج.م</option><option value="over2000">أكثر من 2,000 ج.م</option>
+      </select>
+      <label style="font-weight:800">ترتيب:</label>
+      <select id="sortBy" onchange="applyFilters()">
+        <option value="popular">الأكثر مبيعاً</option><option value="rating">الأعلى تقييماً</option>
+        <option value="priceAsc">السعر: من الأقل للأعلى</option><option value="priceDesc">السعر: من الأعلى للأقل</option>
+      </select>
+      <button class="cat" onclick="resetFilters()">إعادة تعيين ↺</button>
+    </div>
+  </div>
+
+  <div class="grid" id="grid"></div>
+  <div class="empty" id="empty">😕 مفيش نتائج مطابقة — جرّب كلمة بحث تانية أو غيّر الفلتر.</div>
+</main>
+
+<footer><b>StepUp <span>ستيب أب</span></b><p style="margin-top:8px">متجر أحذية مصري • القاهرة — 6 أكتوبر ومدينة نصر • خدمة العملاء يومياً 10ص - 10م • 01000000000</p><p style="margin-top:6px;font-size:13px">الدفع عند الاستلام • استبدال مجاني خلال 14 يوم • شحن لكل محافظات مصر</p></footer>
+
+<div class="overlay" id="overlay" onclick="closeAll()"></div>
+
+<!-- Cart drawer -->
+<aside class="drawer" id="cartDrawer" aria-label="سلة التسوق">
+  <div class="drawer-head"><h3>🛒 سلة التسوق <span id="cartHeadCount"></span></h3><button class="close" onclick="closeAll()">✕</button></div>
+  <div class="drawer-body" id="cartBody"></div>
+  <div class="drawer-foot" id="cartFoot" style="display:none">
+    <div class="promo"><input id="promoInput" placeholder="كود الخصم — جرّب STEP20"><button onclick="applyPromo()">تطبيق</button></div>
+    <div class="promo-msg" id="promoMsg"></div>
+    <div class="totals" id="totals"></div>
+    <div class="ship-note" id="shipNote"></div>
+    <br><button class="checkout-btn" onclick="showCheckout()">إتمام الطلب — الدفع عند الاستلام 💵</button>
+  </div>
+</aside>
+
+<!-- Checkout / Success modal -->
+<div class="modal" id="checkoutModal">
+  <div class="modal-card" style="max-width:560px">
+    <button class="modal-x" onclick="closeAll()">✕</button>
+    <div class="qv-body" id="checkoutContent">
+      <h2>إتمام الطلب — الدفع عند الاستلام</h2>
+      <p>املأ بياناتك وهنوصلك الطلب لباب البيت، وتدفع كاش لما تستلم.</p>
+      <form class="form" id="checkoutForm" onsubmit="submitOrder(event)" novalidate>
+        <label>الاسم بالكامل *</label><input id="fName" placeholder="مثال: محمد أحمد علي"><div class="field-err" id="eName">من فضلك اكتب اسمك بالكامل.</div>
+        <label>رقم الموبايل *</label><input id="fPhone" inputmode="tel" placeholder="01xxxxxxxxx — 11 رقم يبدأ بـ 01"><div class="field-err" id="ePhone">رقم موبايل مصري صحيح: 11 رقم ويبدأ بـ 01 (مثال 01012345678).</div>
+        <label>العنوان بالتفصيل *</label><textarea id="fAddress" rows="3" placeholder="المحافظة، المنطقة، الشارع، رقم العمارة والشقة، علامة مميزة"></textarea><div class="field-err" id="eAddress">من فضلك اكتب عنوانك بالتفصيل (10 أحرف على الأقل).</div>
+        <label>المحافظة</label>
+        <select id="fCity"><option>القاهرة</option><option>الجيزة</option><option>الإسكندرية</option><option>الدقهلية</option><option>الشرقية</option><option>الغربية</option><option>أسيوط</option><option>المنيا</option><option>سوهاج</option><option>قنا</option><option>الأقصر</option><option>أسوان</option><option>محافظة أخرى</option></select>
+        <label>ملاحظات (اختياري)</label><textarea id="fNotes" rows="2" placeholder="مثال: الاتصال قبل التوصيل بساعة"></textarea>
+        <div class="cod-box">💵 <b>طريقة الدفع: الدفع عند الاستلام (Cash on Delivery)</b><br>هتدفع كاش للمندوب لما تستلم طلبك وتتأكد منه. مفيش دفع أونلاين ومفيش مقدم.</div>
+        <div class="summary" id="checkoutSummary" style="margin-top:16px"></div>
+        <button class="checkout-btn" type="submit" style="margin-top:6px">تأكيد الطلب ✅</button>
+        <button type="button" class="add" style="background:#e4e4e7;color:#111;margin-top:8px" onclick="closeAll();openCart()">رجوع للسلة</button>
+      </form>
+    </div>
+    <div class="success" id="successContent" style="display:none"></div>
+  </div>
+</div>
+
+<!-- Quick view modal -->
+<div class="modal" id="qvModal"><div class="modal-card"><button class="modal-x" onclick="closeAll()">✕</button><div class="qv" id="qvContent"></div></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const PRODUCTS=[
+{id:1,name:"حذاء رانر برو الرياضي",en:"Runner Pro",cat:"sports",tags:"men sneakers",price:1899,old:2499,rating:4.8,reviews:342,emoji:"👟",bg:"linear-gradient(135deg,#ff6b00,#ffb347)",colors:["#111111","#ff6b00","#2563eb"],sizes:[40,41,42,43,44,45,46],desc:"حذاء جري خفيف بنعل مرن يمتص الصدمات، مثالي للجري اليومي والمشي الطويل والجيم.",feat:["نعل EVA خفيف يمتص الصدمات","خامة شبكية تتنفس وتمنع العرق","ثبات ممتاز على كل الأسطح"]},
+{id:2,name:"حذاء جلد كلاسيك رسمي",en:"Classic Leather",cat:"formal",tags:"men",price:2199,old:2799,rating:4.9,reviews:218,emoji:"👞",bg:"linear-gradient(135deg,#3f2d20,#8b5a2b)",colors:["#3f2d20","#111111","#7c2d12"],sizes:[40,41,42,43,44,45,46],desc:"جلد طبيعي فاخر بتشطيب لامع أنيق، اختيارك الأول للشغل والمناسبات الرسمية.",feat:["جلد طبيعي 100%","نعل جلد مخيّط يدوياً","مريح طول اليوم بدون ما يوجع رجلك"]},
+{id:3,name:"سنيكرز نسائي أبيض كاجوال",en:"White Sneaker",cat:"sneakers",tags:"women",price:1499,old:0,rating:4.7,reviews:486,emoji:"👟",bg:"linear-gradient(135deg,#f8fafc,#cbd5e1)",colors:["#ffffff","#fda4af","#111111"],sizes:[36,37,38,39,40,41],desc:"سنيكرز أبيض عملي يليق على كل حاجة — جينز، فستان، أو لبس رياضي. خفيف ومريح.",feat:["يليق على كل اللبس","نعل أبيض مضاد للانزلاق","خامة سهلة التنظيف"]},
+{id:4,name:"حذاء إير فليكس للجري",en:"Air Flex Run",cat:"sports",tags:"men sneakers",price:1699,old:2199,rating:4.8,reviews:294,emoji:"🏃",bg:"linear-gradient(135deg,#0ea5e9,#22d3ee)",colors:["#0ea5e9","#111111","#dc2626"],sizes:[40,41,42,43,44,45,46],desc:"تصميم رياضي بانسيابية عالية ووسادة هوائية في الكعب لراحة أكبر مع كل خطوة.",feat:["وسادة هوائية في الكعب","وزن خفيف جداً: 240 جم فقط","مثالي للجري والتدريب اليومي"]},
+{id:5,name:"حذاء نسائي كعب مريح",en:"Comfort Heel",cat:"women",tags:"women formal",price:1299,old:1699,rating:4.6,reviews:187,emoji:"👠",bg:"linear-gradient(135deg,#ec4899,#f9a8d4)",colors:["#111111","#be185d","#d97706"],sizes:[36,37,38,39,40,41],desc:"كعب متوسط ثابت ومريح، أناقة من غير وجع — مناسب للشغل والخروجات والمناسبات.",feat:["كعب 5 سم ثابت ومريح","بطانة داخلية مبطنة","ثبات عالي ومش بيزحلق"]},
+{id:6,name:"بوت جلد رجالي شتوي",en:"Winter Leather Boot",cat:"men",tags:"men formal",price:2499,old:2999,rating:4.9,reviews:156,emoji:"🥾",bg:"linear-gradient(135deg,#78350f,#92400e)",colors:["#78350f","#111111","#57534e"],sizes:[40,41,42,43,44,45,46],desc:"بوت جلد قوي ودافئ للشتاء، نعل سميك مضاد للماء والانزلاق — يعيش معاك سنين.",feat:["جلد مقاوم للماء","نعل سميك مضاد للانزلاق","دافئ ومبطن من الداخل"]},
+{id:7,name:"حذاء كرة سلة برو",en:"Basketball Pro",cat:"sports",tags:"men sneakers",price:2299,old:0,rating:4.7,reviews:203,emoji:"🏀",bg:"linear-gradient(135deg,#dc2626,#f97316)",colors:["#dc2626","#111111","#ffffff"],sizes:[40,41,42,43,44,45,46],desc:"ثبات عالي وقفز أحسن مع نعل مخصص لملاعب كرة السلة وحماية للكاحل.",feat:["دعم قوي للكاحل","نعل Grip ممتاز للملاعب","امتصاص صدمات عند القفز"]},
+{id:8,name:"حذاء سليب أون كاجوال",en:"Slip-On Casual",cat:"sneakers",tags:"men",price:1199,old:1499,rating:4.5,reviews:328,emoji:"🥿",bg:"linear-gradient(135deg,#65a30d,#a3e635)",colors:["#111111","#65a30d","#2563eb"],sizes:[40,41,42,43,44,45,46],desc:"البس واخرج في ثانية — سليب أون عملي ومريح للمشاوير اليومية والسفر.",feat:["بدون رباط — لبس سريع","خفيف ومريح للمشي الطويل","يليق على الجينز والشورت"]},
+{id:9,name:"حذاء رياضي نسائي فليكس",en:"Flex Women Sport",cat:"sports",tags:"women sneakers",price:1599,old:1999,rating:4.8,reviews:261,emoji:"👟",bg:"linear-gradient(135deg,#7c3aed,#c084fc)",colors:["#7c3aed","#ec4899","#111111"],sizes:[36,37,38,39,40,41],desc:"رياضي نسائي بألوان مبهجة ونعل مرن، مثالي للجيم والمشي واليوميات.",feat:["ألوان مبهجة وثابتة","نعل مرن يتحرك مع رجلك","خامة شبكية تتنفس"]},
+{id:10,name:"حذاء أوكسفورد رسمي رجالي",en:"Oxford Formal",cat:"formal",tags:"men",price:2399,old:0,rating:4.9,reviews:174,emoji:"👞",bg:"linear-gradient(135deg,#1e293b,#475569)",colors:["#111111","#1e293b","#78350f"],sizes:[40,41,42,43,44,45,46],desc:"أوكسفورد كلاسيك بخياطة دقيقة ولمعة أنيقة — يكمل بدلتك في أهم المناسبات.",feat:["تصميم أوكسفورد كلاسيك","جلد فاخر بلمعة أنيقة","نعل مخيّط يدوم طويلاً"]},
+{id:11,name:"سنيكرز ألوان شبابي",en:"Color Pop Sneaker",cat:"sneakers",tags:"men women",price:1399,old:1799,rating:4.6,reviews:412,emoji:"🎨",bg:"linear-gradient(135deg,#f59e0b,#ef4444,#8b5cf6)",colors:["#ef4444","#f59e0b","#8b5cf6"],sizes:[36,37,38,39,40,41,42,43,44,45],desc:"سنيكرز شبابي بألوان جريئة وتصميم عصري يخلي ستايلك مختلف في أي مكان.",feat:["ألوان جريئة وثابتة","تصميم عصري شبابي","مناسب للجنسين"]},
+{id:12,name:"حذاء تدريب جيم برو",en:"Gym Training Pro",cat:"sports",tags:"men women",price:1799,old:2299,rating:4.7,reviews:239,emoji:"🏋️",bg:"linear-gradient(135deg,#111827,#374151)",colors:["#111111","#dc2626","#2563eb"],sizes:[36,37,38,39,40,41,42,43,44,45,46],desc:"مصمم للتمارين والأوزان: قاعدة ثابتة ودعم للقدم يخليك تتمرن بأمان وثقة.",feat:["قاعدة ثابتة لتمارين الأوزان","دعم جانبي قوي للقدم","نعل لا يترك أثر على الأرض"]},
+];
+let currentCat="all", cart=[], promoApplied=false, sel={};
+const fmt=n=>n.toLocaleString("en-US")+" ج.م";
+const stars=r=>"★".repeat(Math.round(r))+"☆".repeat(5-Math.round(r));
+function discountPct(p){return p.old?Math.round((1-p.price/p.old)*100):0}
+function getSel(id){if(!sel[id]){const p=PRODUCTS.find(x=>x.id===id);sel[id]={size:p.sizes[Math.floor(p.sizes.length/2)],color:p.colors[0]};}return sel[id]}
+function render(){
+  const q=document.getElementById("searchInput").value.trim();
+  const pf=document.getElementById("priceFilter").value, sort=document.getElementById("sortBy").value;
+  let list=PRODUCTS.filter(p=>{
+    if(currentCat!=="all"){
+      if(currentCat==="men"&&!(p.tags.includes("men")))return false;
+      if(currentCat==="women"&&!(p.tags.includes("women")))return false;
+      if(currentCat==="sports"&&p.cat!=="sports")return false;
+      if(currentCat==="formal"&&p.cat!=="formal")return false;
+      if(currentCat==="sneakers"&&p.cat!=="sneakers")return false;
+    }
+    if(q&&!(p.name+p.en+p.desc).includes(q))return false;
+    if(pf==="under1500"&&p.price>=1500)return false;
+    if(pf==="1500-2000"&&(p.price<1500||p.price>2000))return false;
+    if(pf==="over2000"&&p.price<=2000)return false;
+    return true;
+  });
+  if(sort==="priceAsc")list.sort((a,b)=>a.price-b.price);
+  if(sort==="priceDesc")list.sort((a,b)=>b.price-a.price);
+  if(sort==="rating")list.sort((a,b)=>b.rating-a.rating);
+  if(sort==="popular")list.sort((a,b)=>b.reviews-a.reviews);
+  document.getElementById("resultsCount").textContent=list.length+" منتج";
+  document.getElementById("empty").style.display=list.length?"none":"block";
+  document.getElementById("grid").innerHTML=list.map(p=>{
+    const s=getSel(p.id);
+    return `<article class="card">
+    <div class="visual" style="background:${p.bg}" onclick="quickView(${p.id})">
+      ${p.old?`<span class="badge">خصم ${discountPct(p)}%</span>`:`<span class="badge new">جديد</span>`}
+      <span>${p.emoji}</span><button class="quick" onclick="event.stopPropagation();quickView(${p.id})">👁️ عرض سريع</button>
+    </div>
+    <div class="body">
+      <span class="cat-tag">${p.cat==="sports"?"🏃 رياضي":p.cat==="formal"?"🎩 رسمي":p.cat==="women"?"👠 حريمي":p.cat==="sneakers"?"✨ سنيكرز":"👞 رجالي"} • ${p.en}</span>
+      <h3 onclick="quickView(${p.id})">${p.name}</h3>
+      <div class="stars">${stars(p.rating)} <small>${p.rating} (${p.reviews} تقييم)</small></div>
+      <p class="desc">${p.desc}</p>
+      <div class="price-row"><span class="price">${fmt(p.price)}</span>${p.old?`<span class="old">${fmt(p.old)}</span><span class="save">وفّر ${fmt(p.old-p.price)}</span>`:""}</div>
+      <div class="sizes"><span>المقاس:</span>${p.sizes.map(sz=>`<button class="size ${s.size===sz?"sel":""}" onclick="pickSize(${p.id},${sz},this)">${sz}</button>`).join("")}</div>
+      <div class="colors"><span>اللون:</span>${p.colors.map(c=>`<span class="dot ${s.color===c?"sel":""}" style="background:${c}" onclick="pickColor(${p.id},'${c}',this)" title="لون"></span>`).join("")}</div>
+      <button class="add" onclick="addToCart(${p.id})">أضف للسلة 🛒</button>
+    </div></article>`}).join("");
+}
+function pickSize(id,sz,el){getSel(id).size=sz;el.parentElement.querySelectorAll(".size").forEach(b=>b.classList.remove("sel"));el.classList.add("sel")}
+function pickColor(id,c,el){getSel(id).color=c;el.parentElement.querySelectorAll(".dot").forEach(d=>d.classList.remove("sel"));el.classList.add("sel")}
+function setCat(c){currentCat=c;document.querySelectorAll(".cat[data-cat]").forEach(b=>b.classList.toggle("active",b.dataset.cat===c));document.querySelectorAll(".cat[data-cat]").forEach(b=>b.classList.toggle("orange",b.dataset.cat===c&&b.classList.contains("active")));render()}
+function applyFilters(){render()}
+function resetFilters(){document.getElementById("searchInput").value="";document.getElementById("priceFilter").value="all";document.getElementById("sortBy").value="popular";setCat("all")}
+document.getElementById("searchInput").addEventListener("input",render);
+function addToCart(id,qty=1){
+  const p=PRODUCTS.find(x=>x.id===id), s=getSel(id);
+  const key=id+"-"+s.size+"-"+s.color;
+  const ex=cart.find(i=>i.key===key);
+  if(ex)ex.qty+=qty; else cart.push({key,id,size:s.size,color:s.color,qty});
+  updateCart(); toast(`✅ أضيف "${p.name}" — مقاس ${s.size} للسلة`);
+}
+function updateCart(){
+  const count=cart.reduce((a,i)=>a+i.qty,0);
+  document.getElementById("cartCount").textContent=count;
+  document.getElementById("cartHeadCount").textContent=count?`(${count})`:"";
+  const body=document.getElementById("cartBody"), foot=document.getElementById("cartFoot");
+  if(!cart.length){body.innerHTML=`<div style="text-align:center;padding:40px 10px"><div style="font-size:64px">🛒</div><h3 style="margin:10px 0">سلتك فاضية</h3><p style="color:#71717a;font-weight:700">اختار حذاء يعجبك وأضفه للسلة.</p><br><button class="btn" onclick="closeAll()">تسوّق الآن</button></div>`;foot.style.display="none";return;}
+  foot.style.display="block";
+  body.innerHTML=cart.map(i=>{const p=PRODUCTS.find(x=>x.id===i.id);return `<div class="cart-item">
+    <div class="thumb" style="background:${p.bg}">${p.emoji}</div>
+    <div style="flex:1"><h4>${p.name}</h4><small>مقاس ${i.size} • لون <span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:${i.color};vertical-align:middle;border:1px solid #ccc"></span> • ${fmt(p.price)}</small>
+    <div class="qty"><button onclick="changeQty('${i.key}',-1)">−</button><b>${i.qty}</b><button onclick="changeQty('${i.key}',1)">+</button><span style="font-weight:900;margin-inline-start:auto">${fmt(p.price*i.qty)}</span></div>
+    <button class="remove" onclick="removeItem('${i.key}')">🗑️ حذف</button></div></div>`}).join("");
+  const t=calcTotals();
+  document.getElementById("totals").innerHTML=`<div><span>المجموع الفرعي</span><span>${fmt(t.sub)}</span></div>${t.discount?`<div style="color:var(--green)"><span>خصم STEP20 (20%)</span><span>− ${fmt(t.discount)}</span></div>`:""}<div><span>الشحن</span><span>${t.ship===0?"مجاني 🎉":fmt(t.ship)}</span></div><div class="grand"><span>الإجمالي</span><b>${fmt(t.total)}</b></div>`;
+  document.getElementById("shipNote").textContent=t.ship===0?"🎉 مبروك! شحنك مجاني — طلبك فوق 1,500 جنيه":`أضف ${fmt(1500-t.sub)} كمان واحصل على شحن مجاني`;
+}
+function calcTotals(){
+  const sub=cart.reduce((a,i)=>a+PRODUCTS.find(p=>p.id===i.id).price*i.qty,0);
+  const discount=promoApplied?Math.round(sub*0.20):0;
+  const after=sub-discount;
+  const ship=after===0?0:(after>=1500?0:60);
+  return {sub,discount,ship,total:after+ship};
+}
+function changeQty(key,d){const it=cart.find(i=>i.key===key);if(!it)return;it.qty+=d;if(it.qty<=0)cart=cart.filter(i=>i.key!==key);updateCart()}
+function removeItem(key){cart=cart.filter(i=>i.key!==key);updateCart();toast("🗑️ تم حذف المنتج من السلة")}
+function applyPromo(){
+  const v=document.getElementById("promoInput").value.trim().toUpperCase(), m=document.getElementById("promoMsg");
+  if(v==="STEP20"){promoApplied=true;m.textContent="✅ تم تطبيق خصم 20% بنجاح!";m.className="promo-msg ok";toast("🎉 خصم 20% اتطبق على طلبك");}
+  else{promoApplied=false;m.textContent="❌ الكود غير صحيح — جرّب STEP20";m.className="promo-msg err";}
+  updateCart();
+}
+function openCart(){updateCart();document.getElementById("overlay").classList.add("show");document.getElementById("cartDrawer").classList.add("open")}
+function closeAll(){document.getElementById("overlay").classList.remove("show");document.getElementById("cartDrawer").classList.remove("open");document.querySelectorAll(".modal").forEach(m=>m.classList.remove("show"))}
+function quickView(id){
+  const p=PRODUCTS.find(x=>x.id===id), s=getSel(id);
+  document.getElementById("qvContent").innerHTML=`<div class="qv-visual" style="background:${p.bg}"><span>${p.emoji}</span></div>
+  <div class="qv-body"><span class="cat-tag">${p.en}</span><h2>${p.name}</h2>
+  <div class="stars">${stars(p.rating)} <small>${p.rating} (${p.reviews} تقييم)</small></div>
+  <div class="price-row" style="margin-top:8px"><span class="price" style="font-size:28px">${fmt(p.price)}</span>${p.old?`<span class="old">${fmt(p.old)}</span><span class="save">خصم ${discountPct(p)}%</span>`:""}</div>
+  <p>${p.desc}</p><ul class="feat">${p.feat.map(f=>`<li>${f}</li>`).join("")}</ul>
+  <div class="sizes"><span>المقاس:</span>${p.sizes.map(sz=>`<button class="size ${s.size===sz?"sel":""}" onclick="pickSize(${p.id},${sz},this);quickViewRefresh(${p.id})">${sz}</button>`).join("")}</div>
+  <div class="colors" style="margin-top:10px"><span>اللون:</span>${p.colors.map(c=>`<span class="dot ${s.color===c?"sel":""}" style="background:${c}" onclick="pickColor(${p.id},'${c}',this)"></span>`).join("")}</div>
+  <div style="display:flex;gap:10px;margin-top:18px"><button class="add" style="flex:1" onclick="addToCart(${p.id});closeAll();openCart()">أضف للسلة 🛒</button><button class="add" style="flex:1;background:#111" onclick="addToCart(${p.id});closeAll();showCheckout()">اشترِ الآن ⚡</button></div>
+  <p style="font-size:13px;margin-top:12px">🚚 شحن 24-72 ساعة • 🔁 استبدال مجاني 14 يوم • 💵 الدفع عند الاستلام</p></div>`;
+  document.getElementById("overlay").classList.add("show");document.getElementById("qvModal").classList.add("show");
+}
+function quickViewRefresh(id){/* size state already updated; keep modal open */}
+function showCheckout(){
+  if(!cart.length){toast("🛒 سلتك فاضية — أضف منتج الأول");return;}
+  const t=calcTotals();
+  document.getElementById("checkoutSummary").innerHTML=`<div><span>عدد المنتجات</span><span>${cart.reduce((a,i)=>a+i.qty,0)} قطعة</span></div>${t.discount?`<div style="color:var(--green)"><span>خصم STEP20</span><span>− ${fmt(t.discount)}</span></div>`:""}<div><span>الشحن</span><span>${t.ship===0?"مجاني":fmt(t.ship)}</span></div><div style="font-size:18px;border-top:2px dashed #d4d4d8;padding-top:8px"><span>الإجمالي عند الاستلام</span><b style="color:var(--orange)">${fmt(t.total)}</b></div>`;
+  document.getElementById("checkoutContent").style.display="block";document.getElementById("successContent").style.display="none";
+  closeAll();document.getElementById("overlay").classList.add("show");document.getElementById("checkoutModal").classList.add("show");
+}
+function submitOrder(e){
+  e.preventDefault();
+  const name=document.getElementById("fName").value.trim(), phone=document.getElementById("fPhone").value.trim().replace(/\s/g,""), addr=document.getElementById("fAddress").value.trim();
+  let ok=true;
+  const mark=(id,errId,valid)=>{document.getElementById(id).classList.toggle("err",!valid);document.getElementById(errId).style.display=valid?"none":"block";if(!valid)ok=false;};
+  mark("fName","eName",name.length>=3);
+  mark("fPhone","ePhone",/^01[0-9]{9}$/.test(phone));
+  mark("fAddress","eAddress",addr.length>=10);
+  if(!ok){toast("⚠️ راجع البيانات المطلوبة بالأحمر");return;}
+  const t=calcTotals(), orderNo="SU-"+Math.floor(100000+Math.random()*900000);
+  const city=document.getElementById("fCity").value, notes=document.getElementById("fNotes").value.trim();
+  const itemsHtml=cart.map(i=>{const p=PRODUCTS.find(x=>x.id===i.id);return `<div><span>${p.emoji} ${p.name} — مقاس ${i.size} × ${i.qty}</span><span>${fmt(p.price*i.qty)}</span></div>`}).join("");
+  document.getElementById("checkoutContent").style.display="none";
+  const sc=document.getElementById("successContent");sc.style.display="block";
+  sc.innerHTML=`<div class="tick">✓</div><h2>تم استلام طلبك بنجاح! 🎉</h2><p style="color:#52525b;font-weight:700;margin-top:6px">شكراً يا ${name} — هنتصل بيك على <b>${phone}</b> للتأكيد، والتوصيل خلال 24-72 ساعة.</p>
+  <div class="order-no">رقم الطلب: <span>${orderNo}</span></div>
+  <div class="summary">${itemsHtml}<div><span>الشحن (${city})</span><span>${t.ship===0?"مجاني":fmt(t.ship)}</span></div>${t.discount?`<div style="color:var(--green)"><span>خصم STEP20</span><span>− ${fmt(t.discount)}</span></div>`:""}<div style="font-size:18px;border-top:2px dashed #d4d4d8;padding-top:8px"><span>الإجمالي — الدفع عند الاستلام</span><b style="color:var(--orange)">${fmt(t.total)}</b></div><div><span>العنوان</span><span style="text-align:left;max-width:60%">${addr} — ${city}</span></div>${notes?`<div><span>ملاحظات</span><span>${notes}</span></div>`:""}</div>
+  <p style="font-weight:800;color:#52525b">💵 ادفع كاش لما تستلم • احتفظ برقم الطلب للمتابعة</p><br><button class="btn" onclick="closeAll()">متابعة التسوق 👟</button>`;
+  cart=[];promoApplied=false;document.getElementById("promoInput").value="";document.getElementById("promoMsg").textContent="";updateCart();
+}
+let toastTimer;
+function toast(msg){const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove("show"),2600)}
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeAll()});
+render();
+</script>
+</body>
+</html>
