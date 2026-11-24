@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aurum Time | أوروم — Luxury Watches in Egypt</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700;900&family=Inter:wght@400;500;600;700&family=Cairo:wght@500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--gold:#c9a227;--gold2:#e8c766;--gold3:#f5e6b8;--dark:#0c0c0e;--dark2:#141416;--card:#1a1a1e;--line:#2c2c33;--text:#f2ede3;--muted:#a8a29a}
+body{font-family:'Inter',sans-serif;background:var(--dark);color:var(--text);line-height:1.6}
+h1,h2,h3,.serif{font-family:'Playfair Display',serif}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;font-family:inherit}
+.topbar{background:#000;text-align:center;padding:8px 16px;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold2)}
+.topbar span{color:#fff}
+header{position:sticky;top:0;z-index:50;background:rgba(12,12,14,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav{max-width:1240px;margin:0 auto;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.logo{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;letter-spacing:.06em}
+.logo em{color:var(--gold);font-style:normal}
+.logo small{display:block;font-family:'Cairo',sans-serif;font-size:13px;color:var(--gold2);letter-spacing:.2em}
+.nav-links{display:flex;gap:22px;font-size:14px;color:var(--muted)}
+.nav-links a:hover{color:var(--gold2)}
+.nav-actions{display:flex;gap:10px;align-items:center}
+.icon-btn{position:relative;background:#1e1e22;border:1px solid var(--line);color:#fff;padding:10px 14px;border-radius:999px;font-size:14px}
+.icon-btn:hover{border-color:var(--gold)}
+.badge{position:absolute;top:-7px;right:-7px;background:var(--gold);color:#111;min-width:22px;height:22px;border-radius:999px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;padding:0 5px}
+.hero{max-width:1240px;margin:0 auto;padding:56px 20px 36px;display:grid;grid-template-columns:1.15fr .85fr;gap:36px;align-items:center}
+.hero h1{font-size:52px;line-height:1.05;font-weight:900}
+.hero h1 span{color:var(--gold);display:block;font-size:42px}
+.hero p{color:var(--muted);margin:18px 0 22px;font-size:17px;max-width:560px}
+.hero-ar{font-family:'Cairo',sans-serif;color:var(--gold2);font-size:18px;margin-bottom:8px}
+.btn{background:linear-gradient(135deg,#d4af37,#a67c00);color:#111;border:0;padding:14px 26px;border-radius:999px;font-weight:700;font-size:15px}
+.btn:hover{filter:brightness(1.1)}
+.btn-ghost{background:transparent;color:#fff;border:1px solid var(--gold);padding:13px 24px;border-radius:999px;font-weight:600}
+.hero-stats{display:flex;gap:28px;margin-top:26px}
+.hero-stats b{font-family:'Playfair Display',serif;font-size:24px;display:block;color:var(--gold2)}
+.hero-stats span{font-size:13px;color:var(--muted)}
+.hero-visual{background:radial-gradient(circle at 50% 35%,#2a2110,#141416 62%);border:1px solid #3a2f14;border-radius:24px;padding:36px;text-align:center}
+.watch-face{width:230px;height:230px;margin:0 auto;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff8dc,#c9a227 32%,#6b5510 68%,#111);border:10px solid #222;box-shadow:0 20px 50px rgba(0,0,0,.6),inset 0 0 0 3px #e8c766;display:flex;align-items:center;justify-content:center;flex-direction:column;color:#111}
+.watch-face .big{font-size:64px;line-height:1}
+.watch-face .t{font-family:'Playfair Display',serif;font-weight:900;font-size:20px}
+.watch-face .s{font-size:11px;letter-spacing:.25em;text-transform:uppercase}
+.hero-visual p{margin-top:20px;color:var(--muted);font-size:14px}
+.hero-visual p b{color:#fff}
+.trust{max-width:1240px;margin:0 auto;padding:0 20px 28px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.trust div{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+.trust b{display:block;font-size:14px}
+.trust span{font-size:13px;color:var(--muted)}
+.controls{max-width:1240px;margin:10px auto;padding:20px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+.search{flex:1;min-width:240px;display:flex;background:#1e1e22;border:1px solid var(--line);border-radius:999px;padding:4px 6px 4px 16px}
+.search input{flex:1;background:transparent;border:0;outline:0;color:#fff;font-size:15px;padding:10px 0}
+.search button{background:var(--gold);border:0;border-radius:999px;padding:10px 18px;font-weight:700}
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.chip{background:#1e1e22;border:1px solid var(--line);color:#ddd;padding:9px 15px;border-radius:999px;font-size:13.5px}
+.chip.active{background:var(--gold);color:#111;border-color:var(--gold);font-weight:700}
+select{background:#1e1e22;color:#fff;border:1px solid var(--line);border-radius:999px;padding:11px 14px;font-size:14px}
+.section{max-width:1240px;margin:0 auto;padding:10px 20px 30px}
+.section h2{font-size:32px}
+.section h2 span{color:var(--gold)}
+.section .sub{color:var(--muted);margin:6px 0 20px}
+.count{font-size:13px;color:var(--muted);margin-bottom:16px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;transition:.25s}
+.card:hover{transform:translateY(-5px);border-color:#6b5a1e;box-shadow:0 18px 40px rgba(0,0,0,.45)}
+.visual{height:210px;display:flex;align-items:center;justify-content:center;position:relative;font-size:86px}
+.visual .dial{width:150px;height:150px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;border:7px solid #222;box-shadow:inset 0 0 0 2px rgba(255,255,255,.35),0 12px 30px rgba(0,0,0,.5);color:#111;text-align:center}
+.visual .dial b{font-family:'Playfair Display',serif;font-size:15px;line-height:1.1}
+.visual .dial span{font-size:10px;letter-spacing:.18em;text-transform:uppercase}
+.v1{background:linear-gradient(135deg,#3a2f14,#0f0f12)}
+.v2{background:linear-gradient(135deg,#123043,#0f0f12)}
+.v3{background:linear-gradient(135deg,#3d1420,#0f0f12)}
+.v4{background:linear-gradient(135deg,#143d2a,#0f0f12)}
+.d1{background:radial-gradient(circle at 35% 30%,#fff,#d4af37 55%,#8a6d00)}
+.d2{background:radial-gradient(circle at 35% 30%,#eaf6ff,#7fb3d5 55%,#1a4a6b)}
+.d3{background:radial-gradient(circle at 35% 30%,#ffe9ec,#c0392b 55%,#5b0f0f)}
+.d4{background:radial-gradient(circle at 35% 30%,#eafff3,#58b368 55%,#0f4d2a)}
+.d5{background:radial-gradient(circle at 35% 30%,#111,#444 55%,#000);color:#f5e6b8!important}
+.d5 b,.d5 span{color:#f5e6b8}
+.tag{position:absolute;top:14px;left:14px;background:#111;color:var(--gold2);border:1px solid var(--gold);font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:6px 10px;border-radius:999px}
+.heart{position:absolute;top:12px;right:12px;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:rgba(0,0,0,.55);color:#fff;font-size:18px}
+.heart.on{background:#c0392b;border-color:#c0392b}
+.body{padding:18px 18px 20px}
+.brand{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold2)}
+.body h3{font-size:21px;margin:5px 0 4px}
+.stars{color:#f5c518;font-size:14px;letter-spacing:2px}
+.body p{color:var(--muted);font-size:14px;margin:8px 0 14px;min-height:44px}
+.price-row{display:flex;justify-content:space-between;align-items:flex-end;gap:10px}
+.price b{font-family:'Playfair Display',serif;font-size:22px;display:block}
+.price span{font-size:12.5px;color:var(--muted)}
+.add{flex-shrink:0;background:var(--gold);border:0;border-radius:999px;padding:11px 16px;font-weight:700}
+.add:hover{filter:brightness(1.1)}
+.details-link{background:none;border:0;color:var(--gold2);text-decoration:underline;font-size:13px;margin-top:12px;padding:0}
+.empty{background:var(--card);border:1px dashed #444;border-radius:16px;padding:40px;text-align:center;color:var(--muted);grid-column:1/-1}
+.features{max-width:1240px;margin:10px auto 40px;padding:0 20px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.features article{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px}
+.features h3{font-size:20px;margin-bottom:8px}
+.features p{color:var(--muted);font-size:14px}
+footer{background:#000;border-top:1px solid var(--line);padding:36px 20px;text-align:center;color:var(--muted)}
+footer b{color:#fff;font-family:'Playfair Display',serif;font-size:22px}
+footer .ar{font-family:'Cairo',sans-serif;color:var(--gold2);margin-top:8px}
+.drawer{position:fixed;top:0;right:0;width:min(430px,94vw);height:100%;background:#161618;border-left:1px solid var(--line);z-index:90;transform:translateX(105%);transition:.3s;display:flex;flex-direction:column}
+.drawer.open{transform:none}
+.drawer-head{padding:20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line)}
+.drawer-head h3{font-size:22px}
+.close{background:#222;color:#fff;border:1px solid var(--line);width:36px;height:36px;border-radius:50%;font-size:16px}
+.drawer-body{flex:1;overflow:auto;padding:16px 20px}
+.cart-item{display:flex;gap:12px;background:#1e1e22;border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:12px}
+.cart-item .thumb{width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0}
+.cart-item h4{font-size:15px}
+.cart-item p{font-size:12.5px;color:var(--muted)}
+.qty{display:flex;gap:8px;align-items:center;margin-top:8px}
+.qty button{width:28px;height:28px;border-radius:50%;border:1px solid var(--line);background:#111;color:#fff}
+.remove{background:none;border:0;color:#ff7b7b;font-size:12.5px;text-decoration:underline}
+.drawer-foot{border-top:1px solid var(--line);padding:18px 20px}
+.promo{display:flex;gap:8px;margin-bottom:12px}
+.promo input{flex:1;background:#1e1e22;border:1px solid var(--line);border-radius:10px;color:#fff;padding:11px 12px;outline:0}
+.promo button{background:#222;color:#fff;border:1px solid var(--gold);border-radius:10px;padding:0 14px;font-weight:600}
+.total-row{display:flex;justify-content:space-between;margin:5px 0;font-size:14px}
+.total-row.grand{font-size:18px;font-weight:700}
+.total-row.grand b{color:var(--gold2)}
+.checkout-btn{width:100%;margin-top:12px}
+.note{font-size:12px;color:var(--muted);margin-top:10px;text-align:center}
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:100;display:none;align-items:center;justify-content:center;padding:18px}
+.modal-bg.open{display:flex}
+.modal{background:#18181b;border:1px solid #3a3a40;border-radius:22px;max-width:760px;width:100%;max-height:92vh;overflow:auto;padding:26px;position:relative}
+.modal h2{font-size:28px}
+.modal .close{position:absolute;top:16px;right:16px}
+.modal-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:16px}
+.modal-grid .visual{height:260px;border-radius:16px}
+.spec{font-size:14px;color:var(--muted);margin:10px 0}
+.spec b{color:#fff}
+.form label{display:block;font-size:13px;font-weight:600;margin:14px 0 6px}
+.form input,.form select,.form textarea{width:100%;background:#222227;border:1px solid #3a3a40;border-radius:10px;color:#fff;padding:12px;outline:0;font-size:15px}
+.form input.error,.form select.error{border-color:#e74c3c}
+.err{color:#ff8a8a;font-size:12.5px;min-height:16px;display:block}
+.pay-box{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
+.pay-opt{border:1px solid #3a3a40;border-radius:12px;padding:14px;cursor:pointer}
+.pay-opt.sel{border-color:var(--gold);background:#241f0d}
+.pay-opt b{display:block}
+.pay-opt span{font-size:13px;color:var(--muted)}
+#cardFields{display:none}
+#cardFields.show{display:block}
+.success{text-align:center;padding:10px 0}
+.success .tick{font-size:64px}
+.success h2{color:var(--gold2)}
+.order-no{background:#1e1e22;border:1px dashed var(--gold);border-radius:12px;padding:14px;margin:16px 0;font-size:18px}
+.order-no b{color:var(--gold2)}
+.summary{text-align:left;background:#1e1e22;border-radius:14px;padding:16px;font-size:14px}
+.summary div{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #2c2c33}
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(80px);background:#fff;color:#111;padding:13px 20px;border-radius:999px;font-weight:600;z-index:120;transition:.3s;box-shadow:0 10px 30px rgba(0,0,0,.5);opacity:0}
+.toast.show{transform:translateX(-50%);opacity:1}
+@media(max-width:900px){.hero{grid-template-columns:1fr}.hero h1{font-size:38px}.grid{grid-template-columns:repeat(2,1fr)}.trust{grid-template-columns:repeat(2,1fr)}.features{grid-template-columns:1fr}.modal-grid{grid-template-columns:1fr}}
+@media(max-width:560px){.grid{grid-template-columns:1fr}.nav-links{display:none}.hero h1{font-size:32px}}
+</style>
+</head>
+<body>
+<div class="topbar">Free insured delivery in Cairo &amp; Giza &nbsp;•&nbsp; <span>توصيل مجاني ومؤمّن في القاهرة والجيزة</span> &nbsp;•&nbsp; 2-year international warranty</div>
+<header>
+  <div class="nav">
+    <a class="logo" href="#">AURUM <em>TIME</em><small>أوروم تايم — ساعات فاخرة</small></a>
+    <nav class="nav-links"><a href="#collection">Collection</a><a href="#collection">Brands</a><a href="#why">Why Aurum</a><a href="#collection">Best Sellers</a></nav>
+    <div class="nav-actions">
+      <button class="icon-btn" id="wishBtn" onclick="showWishlist()">♡ Wishlist <span class="badge" id="wishCount">0</span></button>
+      <button class="icon-btn" onclick="toggleCart(true)">🛒 Cart <span class="badge" id="cartCount">0</span></button>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div>
+    <div class="hero-ar">وقتك يستحق الفخامة — ساعات أصلية، ضمان سنتين، ودفع عند الاستلام</div>
+    <h1>Time, worn<br><span>like gold.</span></h1>
+    <p>A curated collection of Swiss-inspired luxury watches — automatic movements, sapphire crystal and hand-finished details. Priced in EGP, delivered across Egypt, with cash on delivery available.</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <button class="btn" onclick="document.getElementById('collection').scrollIntoView({behavior:'smooth'})">Shop the Collection ↓</button>
+      <button class="btn-ghost" onclick="filterBrand('Aurum')">Shop Aurum</button>
+    </div>
+    <div class="hero-stats">
+      <div><b>12</b><span>Exclusive models</span></div>
+      <div><b>4.9 ★</b><span>1,240+ reviews</span></div>
+      <div><b>48h</b><span>Delivery in Egypt</span></div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="watch-face"><div class="big">⌚</div><div class="t">AURUM</div><div class="s">Heritage • 2026</div></div>
+    <p><b>Heritage Chronograph — EGP 185,000</b><br>Automatic • Sapphire crystal • 41mm steel &amp; gold</p>
+  </div>
+</section>
+
+<div class="trust">
+  <div><b>✓ 100% Authentic</b><span>Certificate &amp; serial number with every watch.</span></div>
+  <div><b>🚚 Insured Delivery</b><span>Free in Cairo &amp; Giza, 48 hours nationwide.</span></div>
+  <div><b>💳 Cash on Delivery</b><span>Pay in cash, or securely by card at checkout.</span></div>
+  <div><b>🛡️ 2-Year Warranty</b><span>Free servicing &amp; 14-day easy returns.</span></div>
+</div>
+
+<div class="controls" id="collection">
+  <div class="search"><input id="searchInput" type="text" placeholder="Search watches, brands, features… e.g. moonphase, diver, gold" oninput="renderProducts()"><button onclick="renderProducts()">Search</button></div>
+  <div class="filters" id="brandFilters"></div>
+  <select id="sortSelect" onchange="renderProducts()" aria-label="Sort watches">
+    <option value="featured">Sort: Featured</option>
+    <option value="low">Price: Low to High</option>
+    <option value="high">Price: High to Low</option>
+    <option value="rating">Top Rated</option>
+    <option value="name">Name A–Z</option>
+  </select>
+</div>
+
+<main class="section">
+  <h2>The Collection <span>— 2026</span></h2>
+  <p class="sub">Twelve pieces, four houses, one standard: uncompromising craftsmanship. Prices include VAT. USD shown at approx. EGP 48 / $1.</p>
+  <div class="count" id="resultCount"></div>
+  <div class="grid" id="productGrid"></div>
+</main>
+
+<section class="features" id="why">
+  <article><h3>Why collectors choose Aurum</h3><p>Every watch is inspected in Cairo before dispatch, pressure-tested, and shipped with its certificate, box and warranty card. No grey-market pieces, no surprises.</p></article>
+  <article><h3>Pay your way</h3><p>Cash on delivery across Egypt, or pay by card online. Try the watch at delivery — if it is not for you, return it within 14 days.</p></article>
+  <article><h3>Service for life</h3><p>Free first service, battery and strap care, and a dedicated Arabic &amp; English concierge on WhatsApp for owners.</p></article>
+</section>
+
+<footer>
+  <b>AURUM TIME — أوروم تايم</b>
+  <p>New Cairo • Zamalek • Alexandria — Open daily 11am–10pm</p>
+  <p class="ar">ساعات فاخرة أصلية • ضمان سنتين • دفع عند الاستلام • توصيل لكل مصر</p>
+  <p style="font-size:13px;margin-top:10px">Demo store — prices in EGP. No real payment is taken. © 2026 Aurum Time.</p>
+</footer>
+
+<!-- CART DRAWER -->
+<aside class="drawer" id="cartDrawer" aria-label="Shopping cart">
+  <div class="drawer-head"><h3>Your Cart 🛒</h3><button class="close" onclick="toggleCart(false)">✕</button></div>
+  <div class="drawer-body" id="cartItems"></div>
+  <div class="drawer-foot">
+    <div class="promo"><input id="promoInput" placeholder="Promo code — try AURUM10"><button onclick="applyPromo()">Apply</button></div>
+    <div id="promoMsg" style="font-size:13px;color:#7ee2a8;min-height:18px"></div>
+    <div class="total-row"><span>Subtotal</span><span id="subTotal">EGP 0</span></div>
+    <div class="total-row" id="discountRow" style="display:none"><span>Discount (<span id="discountLabel"></span>)</span><span id="discountVal" style="color:#7ee2a8">— EGP 0</span></div>
+    <div class="total-row"><span>Delivery</span><span id="deliveryVal">Free</span></div>
+    <div class="total-row grand"><span>Total</span><b id="grandTotal">EGP 0</b></div>
+    <div class="total-row"><span></span><span id="usdTotal" style="font-size:13px;color:var(--muted)"></span></div>
+    <button class="btn checkout-btn" onclick="openCheckout()">Checkout Securely →</button>
+    <p class="note">Cash on Delivery available • Card payments are a demo — no real charge.</p>
+  </div>
+</aside>
+
+<!-- PRODUCT MODAL -->
+<div class="modal-bg" id="productModal" onclick="if(event.target===this)closeModal('productModal')">
+  <div class="modal">
+    <button class="close" onclick="closeModal('productModal')">✕</button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<!-- CHECKOUT MODAL -->
+<div class="modal-bg" id="checkoutModal" onclick="if(event.target===this)closeModal('checkoutModal')">
+  <div class="modal">
+    <button class="close" onclick="closeModal('checkoutModal')">✕</button>
+    <h2>Checkout</h2>
+    <p style="color:var(--muted);font-size:14px">Delivery across Egypt in 48 hours. Pay cash on delivery, or by card now.</p>
+    <form class="form" id="checkoutForm" onsubmit="placeOrder(event)" novalidate>
+      <label>Full name *</label><input id="fName" placeholder="e.g. Mohamed Essam"><span class="err" id="eName"></span>
+      <label>Phone (Egypt) *</label><input id="fPhone" placeholder="e.g. 01012345678"><span class="err" id="ePhone"></span>
+      <label>Delivery address *</label><input id="fAddress" placeholder="Street, building, apartment — e.g. 12 Nile St, Zamalek, Cairo"><span class="err" id="eAddress"></span>
+      <label>City *</label>
+      <select id="fCity"><option value="">Choose your city…</option><option>Cairo</option><option>Giza</option><option>Alexandria</option><option>6th of October</option><option>New Cairo</option><option>Mansoura</option><option>Luxor</option><option>Aswan</option><option>Other</option></select><span class="err" id="eCity"></span>
+      <label>Payment method *</label>
+      <div class="pay-box">
+        <div class="pay-opt sel" id="payCOD" onclick="setPay('cod')"><b>💵 Cash on Delivery</b><span>Pay in cash when your watch arrives.</span></div>
+        <div class="pay-opt" id="payCard" onclick="setPay('card')"><b>💳 Card</b><span>Visa / Mastercard — demo only.</span></div>
+      </div>
+      <div id="cardFields">
+        <label>Card number *</label><input id="fCard" inputmode="numeric" placeholder="4242 4242 4242 4242" maxlength="19"><span class="err" id="eCard"></span>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div><label>Expiry (MM/YY) *</label><input id="fExp" placeholder="12/28" maxlength="5"><span class="err" id="eExp"></span></div>
+          <div><label>CVV *</label><input id="fCvv" inputmode="numeric" placeholder="123" maxlength="4"><span class="err" id="eCvv"></span></div>
+        </div>
+        <label>Name on card *</label><input id="fCardName" placeholder="As shown on the card"><span class="err" id="eCardName"></span>
+      </div>
+      <label>Order notes (optional)</label><textarea id="fNotes" rows="2" placeholder="Gift wrapping, delivery time, engraving request…"></textarea>
+      <div class="summary" id="checkoutSummary" style="margin-top:18px"></div>
+      <button class="btn" type="submit" style="width:100%;margin-top:18px;padding:15px" id="placeBtn">Place Order — Cash on Delivery</button>
+      <p class="note">Demo checkout — no real payment is processed and no card is charged.</p>
+    </form>
+  </div>
+</div>
+
+<!-- ORDER CONFIRMATION -->
+<div class="modal-bg" id="successModal">
+  <div class="modal success">
+    <div class="tick">✅</div>
+    <h2>Thank you — your order is confirmed!</h2>
+    <p style="color:var(--muted)">شكراً لثقتك في أوروم تايم. We will call you shortly to confirm delivery.</p>
+    <div class="order-no">Order number<br><b id="orderNo"></b><br><span id="orderPay" style="font-size:14px;color:var(--muted)"></span></div>
+    <div class="summary" id="orderSummary"></div>
+    <p style="margin-top:14px;font-size:14px;color:var(--muted)" id="orderCustomer"></p>
+    <button class="btn" style="margin-top:18px" onclick="closeModal('successModal')">Continue Shopping</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const RATE = 48;
+const PRODUCTS = [
+ {id:1, brand:'Aurum', name:'Heritage Chronograph', price:185000, rating:4.9, reviews:214, tag:'Best Seller', emoji:'⌚', dial:'d1', vis:'v1', desc:'41mm steel & gold automatic chronograph with sapphire crystal and a hand-stitched leather strap.', specs:'Automatic • 41mm • Sapphire • 100m water resistant • Leather strap'},
+ {id:2, brand:'Meridian', name:'Sovereign Date', price:245000, rating:5.0, reviews:168, tag:'Iconic', emoji:'⌚', dial:'d2', vis:'v2', desc:'A deep-blue sunburst dial, fluted bezel and date window — the everyday icon, elevated.', specs:'Automatic • 40mm • Sapphire • 100m • Steel bracelet'},
+ {id:3, brand:'Royale', name:'Imperial Tourbillon', price:420000, rating:4.9, reviews:87, tag:'Limited • 99 pcs', emoji:'👑', dial:'d5', vis:'v3', desc:'Open-worked tourbillon in 18k rose gold. Our flagship — only 99 pieces will ever be made.', specs:'Manual tourbillon • 43mm • 18k rose gold • Sapphire • Alligator strap'},
+ {id:4, brand:'Chrono Elite', name:'Monaco Racer', price:165000, rating:4.8, reviews:192, tag:'New', emoji:'🏁', dial:'d3', vis:'v1', desc:'Racing chronograph with a bold red dial, tachymeter bezel and perforated racing strap.', specs:'Automatic chrono • 42mm • Sapphire • 100m • Racing strap'},
+ {id:5, brand:'Aurum', name:'Classic Moonphase', price:210000, rating:4.9, reviews:143, tag:'Elegant', emoji:'🌙', dial:'d1', vis:'v2', desc:'Moonphase complication on a champagne dial — dress-watch elegance with a poetic touch.', specs:'Automatic moonphase • 39mm • Sapphire • 50m • Leather strap'},
+ {id:6, brand:'Meridian', name:'Diver Pro 300M', price:145000, rating:4.8, reviews:231, tag:'Best Seller', emoji:'🤿', dial:'d2', vis:'v4', desc:'Professional 300m diver with ceramic bezel, luminous markers and a helium escape valve.', specs:'Automatic • 43mm • Ceramic bezel • 300m • Rubber & steel'},
+ {id:7, brand:'Royale', name:'Vintage 1957', price:128000, rating:4.7, reviews:119, tag:'Heritage', emoji:'🕰️', dial:'d4', vis:'v1', desc:'A faithful tribute to 1957 — domed crystal, gilt dial and a warm, vintage soul.', specs:'Automatic • 38mm • Domed sapphire • 50m • Leather strap'},
+ {id:8, brand:'Chrono Elite', name:'GMT Worldtimer', price:198000, rating:4.9, reviews:156, tag:'Traveller', emoji:'🌍', dial:'d2', vis:'v3', desc:'Dual time zones and a 24-hour worldtimer ring for travellers who live between cities.', specs:'Automatic GMT • 41mm • Sapphire • 100m • Steel bracelet'},
+ {id:9, brand:'Aurum', name:'Skeleton Noir', price:275000, rating:5.0, reviews:94, tag:'Limited', emoji:'🖤', dial:'d5', vis:'v3', desc:'Black DLC skeletonised movement on full display — modern, bold and unmistakably Aurum.', specs:'Automatic skeleton • 42mm • Black DLC • Sapphire • 100m'},
+ {id:10, brand:'Meridian', name:'Dress Slim', price:98000, rating:4.7, reviews:178, tag:'Value', emoji:'✨', dial:'d1', vis:'v4', desc:'An 8mm slim dress watch in polished steel — the perfect first luxury watch.', specs:'Automatic • 38mm • 8mm slim • Sapphire • 50m • Leather'},
+ {id:11, brand:'Royale', name:'Chrono Gold 18k', price:320000, rating:4.9, reviews:76, tag:'18k Gold', emoji:'🥇', dial:'d1', vis:'v1', desc:'Solid 18k yellow-gold case, champagne dial and gold bracelet. Pure presence.', specs:'Automatic chrono • 41mm • 18k gold • Sapphire • 100m'},
+ {id:12, brand:'Chrono Elite', name:'Emerald Pilot', price:155000, rating:4.8, reviews:132, tag:'New', emoji:'✈️', dial:'d4', vis:'v4', desc:'Green-dial pilot watch with large luminous numerals and a rugged canvas strap.', specs:'Automatic • 43mm • Sapphire • 100m • Canvas strap'}
+];
+const PROMOS = {'AURUM10':0.10,'GOLD15':0.15,'WELCOME5':0.05};
+let activeBrand='All', wishlist=new Set(), cart={}, promo=null, payMethod='cod', lastOrder=null;
+const egp = n => 'EGP ' + n.toLocaleString('en-EG');
+const usd = n => '$' + Math.round(n/RATE).toLocaleString('en-US');
+const stars = r => '★'.repeat(Math.round(r)) + '☆'.repeat(5-Math.round(r));
+
+function buildFilters(){
+  const brands=['All',...new Set(PRODUCTS.map(p=>p.brand))];
+  document.getElementById('brandFilters').innerHTML = brands.map(b=>`<button class="chip ${b===activeBrand?'active':''}" onclick="filterBrand('${b}')">${b}</button>`).join('');
+}
+function filterBrand(b){ activeBrand=b; buildFilters(); renderProducts(); }
+function getFiltered(){
+  const q=(document.getElementById('searchInput').value||'').toLowerCase().trim();
+  const sort=document.getElementById('sortSelect').value;
+  let list=PRODUCTS.filter(p=>(activeBrand==='All'||p.brand===activeBrand) && (!q || (p.name+' '+p.brand+' '+p.desc+' '+p.specs).toLowerCase().includes(q)));
+  if(sort==='low') list=[...list].sort((a,b)=>a.price-b.price);
+  if(sort==='high') list=[...list].sort((a,b)=>b.price-a.price);
+  if(sort==='rating') list=[...list].sort((a,b)=>b.rating-a.rating);
+  if(sort==='name') list=[...list].sort((a,b)=>a.name.localeCompare(b.name));
+  return list;
+}
+function renderProducts(){
+  const list=getFiltered();
+  document.getElementById('resultCount').textContent = list.length + ' of ' + PRODUCTS.length + ' watches' + (activeBrand!=='All' ? ' — ' + activeBrand : '') + (document.getElementById('searchInput').value ? ' matching your search' : '');
+  const grid=document.getElementById('productGrid');
+  if(!list.length){ grid.innerHTML='<div class="empty"><h3 style="color:#fff">No watches found</h3><p>Try a different search or brand — or clear the search to see all 12 pieces.</p><button class="btn" style="margin-top:14px" onclick="document.getElementById(\'searchInput\').value=\'\';filterBrand(\'All\')">Show All Watches</button></div>'; return; }
+  grid.innerHTML=list.map(p=>`
+  <article class="card">
+    <div class="visual ${p.vis}">
+      <span class="tag">${p.tag}</span>
+      <button class="heart ${wishlist.has(p.id)?'on':''}" onclick="toggleWish(${p.id},this)" aria-label="Add to wishlist">${wishlist.has(p.id)?'♥':'♡'}</button>
+      <div class="dial ${p.dial}"><span style="font-size:28px">${p.emoji}</span><b>${p.brand}</b><span>${p.name}</span></div>
+    </div>
+    <div class="body">
+      <div class="brand">${p.brand} • ${p.tag}</div>
+      <h3>${p.name}</h3>
+      <div class="stars">${stars(p.rating)} <span style="color:var(--muted);font-size:13px">${p.rating} (${p.reviews} reviews)</span></div>
+      <p>${p.desc}</p>
+      <div class="price-row"><div class="price"><b>${egp(p.price)}</b><span>≈ ${usd(p.price)} • incl. VAT</span></div><button class="add" onclick="addToCart(${p.id})">Add to Cart</button></div>
+      <button class="details-link" onclick="openProduct(${p.id})">View details →</button>
+    </div>
+  </article>`).join('');
+}
+function openProduct(id){
+  const p=PRODUCTS.find(x=>x.id===id); if(!p) return;
+  document.getElementById('modalContent').innerHTML=`
+    <div class="modal-grid">
+      <div class="visual ${p.vis}"><div class="dial ${p.dial}"><span style="font-size:42px">${p.emoji}</span><b>${p.brand}</b><span>${p.name}</span></div></div>
+      <div>
+        <div class="brand">${p.brand} • ${p.tag}</div><h2>${p.name}</h2>
+        <div class="stars">${stars(p.rating)} <span style="color:var(--muted)">${p.rating} • ${p.reviews} reviews</span></div>
+        <p style="color:var(--muted);margin:12px 0">${p.desc}</p>
+        <p class="spec"><b>Specifications:</b><br>${p.specs}</p>
+        <p class="spec"><b>In the box:</b> Watch, certificate of authenticity, warranty card (2 years), presentation box &amp; cleaning cloth.</p>
+        <div style="font-size:26px;font-family:'Playfair Display',serif"><b>${egp(p.price)}</b> <span style="font-size:15px;color:var(--muted)">≈ ${usd(p.price)}</span></div>
+        <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap">
+          <button class="btn" onclick="addToCart(${p.id});closeModal('productModal');toggleCart(true)">Add to Cart</button>
+          <button class="btn-ghost" onclick="toggleWish(${p.id});openProduct(${p.id})">${wishlist.has(p.id)?'♥ In Wishlist':'♡ Add to Wishlist'}</button>
+        </div>
+      </div>
+    </div>`;
+  document.getElementById('productModal').classList.add('open');
+}
+function toggleWish(id, btn){
+  if(wishlist.has(id)){ wishlist.delete(id); showToast('Removed from wishlist'); }
+  else { wishlist.add(id); showToast('♥ Added to wishlist'); }
+  document.getElementById('wishCount').textContent=wishlist.size;
+  if(btn){ btn.classList.toggle('on'); btn.textContent=wishlist.has(id)?'♥':'♡'; }
+  renderProducts();
+}
+function showWishlist(){
+  if(!wishlist.size){ showToast('Your wishlist is empty — tap ♡ on any watch'); return; }
+  const names=[...wishlist].map(id=>PRODUCTS.find(p=>p.id===id).name).join(', ');
+  showToast('Wishlist: ' + names);
+}
+function addToCart(id){
+  cart[id]=(cart[id]||0)+1; updateCart();
+  const p=PRODUCTS.find(x=>x.id===id); showToast('✓ ' + p.name + ' added to cart');
+}
+function changeQty(id, d){
+  cart[id]=(cart[id]||0)+d; if(cart[id]<=0) delete cart[id]; updateCart();
+}
+function removeItem(id){ delete cart[id]; updateCart(); showToast('Removed from cart'); }
+function cartTotals(){
+  const sub=Object.entries(cart).reduce((s,[id,q])=>s+PRODUCTS.find(p=>p.id==id).price*q,0);
+  const disc=promo?Math.round(sub*PROMOS[promo]):0;
+  const total=sub-disc;
+  return {sub, disc, total};
+}
+function updateCart(){
+  const count=Object.values(cart).reduce((a,b)=>a+b,0);
+  document.getElementById('cartCount').textContent=count;
+  const box=document.getElementById('cartItems');
+  if(!count){ box.innerHTML='<p style="color:var(--muted);text-align:center;padding:30px 10px">Your cart is empty.<br>Browse the collection and add a watch you love.</p>'; }
+  else{
+    box.innerHTML=Object.entries(cart).map(([id,q])=>{ const p=PRODUCTS.find(x=>x.id==id); return `
+    <div class="cart-item"><div class="thumb ${p.dial}">${p.emoji}</div>
+      <div style="flex:1"><h4>${p.brand} ${p.name}</h4><p>${egp(p.price)} each • ≈ ${usd(p.price)}</p>
+      <div class="qty"><button onclick="changeQty(${p.id},-1)">−</button><b>${q}</b><button onclick="changeQty(${p.id},1)">+</button><span style="margin-left:auto"><b>${egp(p.price*q)}</b></span></div>
+      <button class="remove" onclick="removeItem(${p.id})">Remove</button></div></div>`; }).join('');
+  }
+  const t=cartTotals();
+  document.getElementById('subTotal').textContent=egp(t.sub);
+  document.getElementById('discountRow').style.display=promo?'flex':'none';
+  if(promo){ document.getElementById('discountLabel').textContent=promo+' − '+Math.round(PROMOS[promo]*100)+'%'; document.getElementById('discountVal').textContent='— '+egp(t.disc); }
+  document.getElementById('deliveryVal').textContent=t.total>0?'Free':'—';
+  document.getElementById('grandTotal').textContent=egp(t.total);
+  document.getElementById('usdTotal').textContent=t.total?'≈ '+usd(t.total)+' USD':''; 
+}
+function applyPromo(){
+  const code=(document.getElementById('promoInput').value||'').trim().toUpperCase();
+  const msg=document.getElementById('promoMsg');
+  if(!code){ msg.textContent='Enter a code — try AURUM10 for 10% off.'; msg.style.color='#f5c518'; return; }
+  if(PROMOS[code]){ promo=code; msg.textContent='✓ '+code+' applied — '+(PROMOS[code]*100)+'% off your order!'; msg.style.color='#7ee2a8'; showToast('Promo '+code+' applied'); }
+  else { msg.textContent='✕ That code is not valid. Try AURUM10, GOLD15 or WELCOME5.'; msg.style.color='#ff8a8a'; }
+  updateCart();
+}
+function toggleCart(open){ document.getElementById('cartDrawer').classList.toggle('open', open); }
+function closeModal(id){ document.getElementById(id).classList.remove('open'); }
+function setPay(m){
+  payMethod=m;
+  document.getElementById('payCOD').classList.toggle('sel', m==='cod');
+  document.getElementById('payCard').classList.toggle('sel', m==='card');
+  document.getElementById('cardFields').classList.toggle('show', m==='card');
+  document.getElementById('placeBtn').textContent = m==='cod' ? 'Place Order — Cash on Delivery' : 'Pay Securely by Card (Demo)';
+}
+function openCheckout(){
+  if(!Object.keys(cart).length){ showToast('Your cart is empty — add a watch first'); return; }
+  toggleCart(false);
+  const t=cartTotals();
+  const lines=Object.entries(cart).map(([id,q])=>{ const p=PRODUCTS.find(x=>x.id==id); return `<div><span>${p.brand} ${p.name} × ${q}</span><b>${egp(p.price*q)}</b></div>`; }).join('');
+  document.getElementById('checkoutSummary').innerHTML='<b style="font-family:\'Playfair Display\',serif;font-size:17px">Order Summary</b>'+lines+`<div><span>Subtotal</span><b>${egp(t.sub)}</b></div>`+(t.disc?`<div><span>Discount (${promo})</span><b style="color:#7ee2a8">− ${egp(t.disc)}</b></div>`:'')+`<div><span>Delivery</span><b>Free</b></div><div style="border:0"><span><b>Total</b></span><b style="color:var(--gold2)">${egp(t.total)} (≈ ${usd(t.total)})</b></div>`;
+  document.getElementById('checkoutModal').classList.add('open');
+}
+function setErr(id, msg){ document.getElementById(id).textContent=msg||''; const map={eName:'fName',ePhone:'fPhone',eAddress:'fAddress',eCity:'fCity',eCard:'fCard',eExp:'fExp',eCvv:'fCvv',eCardName:'fCardName'}; const el=document.getElementById(map[id]); if(el) el.classList.toggle('error', !!msg); }
+function placeOrder(e){
+  e.preventDefault();
+  const name=document.getElementById('fName').value.trim();
+  const phone=document.getElementById('fPhone').value.trim().replace(/[\s-]/g,'');
+  const addr=document.getElementById('fAddress').value.trim();
+  const city=document.getElementById('fCity').value;
+  let ok=true;
+  setErr('eName', name.length<3?'Please enter your full name.': ''); if(name.length<3) ok=false;
+  setErr('ePhone', /^01[0-9]{9}$/.test(phone)?'':'Enter a valid Egyptian mobile, e.g. 01012345678.'); if(!/^01[0-9]{9}$/.test(phone)) ok=false;
+  setErr('eAddress', addr.length<8?'Please enter a full delivery address.':''); if(addr.length<8) ok=false;
+  setErr('eCity', city?'':'Please choose your city.'); if(!city) ok=false;
+  if(payMethod==='card'){
+    const card=document.getElementById('fCard').value.replace(/\s/g,'');
+    const exp=document.getElementById('fExp').value.trim();
+    const cvv=document.getElementById('fCvv').value.trim();
+    const cname=document.getElementById('fCardName').value.trim();
+    setErr('eCard', /^\d{16}$/.test(card)?'':'Enter a 16-digit card number (demo: 4242 4242 4242 4242).'); if(!/^\d{16}$/.test(card)) ok=false;
+    setErr('eExp', /^(0[1-9]|1[0-2])\/\d{2}$/.test(exp)?'':'Use MM/YY, e.g. 12/28.'); if(!/^(0[1-9]|1[0-2])\/\d{2}$/.test(exp)) ok=false;
+    setErr('eCvv', /^\d{3,4}$/.test(cvv)?'':'Enter the 3–4 digit CVV.'); if(!/^\d{3,4}$/.test(cvv)) ok=false;
+    setErr('eCardName', cname.length<3?'Enter the name on the card.':''); if(cname.length<3) ok=false;
+  }
+  if(!ok){ showToast('Please fix the highlighted fields'); return; }
+  const t=cartTotals();
+  const orderNo='AUR-' + new Date().getFullYear() + '-' + Math.floor(100000 + Math.random()*900000);
+  const lines=Object.entries(cart).map(([id,q])=>{ const p=PRODUCTS.find(x=>x.id==id); return `<div><span>${p.brand} ${p.name} × ${q}</span><b>${egp(p.price*q)}</b></div>`; }).join('');
+  document.getElementById('orderNo').textContent=orderNo;
+  document.getElementById('orderPay').textContent = payMethod==='cod' ? 'Payment: Cash on Delivery' : 'Payment: Card (demo — no charge)';
+  document.getElementById('orderSummary').innerHTML=lines+`<div><span>Subtotal</span><b>${egp(t.sub)}</b></div>`+(t.disc?`<div><span>Discount (${promo})</span><b style="color:#7ee2a8">− ${egp(t.disc)}</b></div>`:'')+`<div><span>Delivery</span><b>Free</b></div><div style="border:0"><span><b>Total paid on delivery</b></span><b style="color:var(--gold2)">${egp(t.total)} (≈ ${usd(t.total)})</b></div>`;
+  document.getElementById('orderCustomer').innerHTML='Delivering to <b style="color:#fff">'+name+'</b> — '+addr+', '+city+' • '+phone;
+  lastOrder={orderNo, name, total:t.total};
+  cart={}; promo=null; document.getElementById('promoInput').value=''; document.getElementById('promoMsg').textContent='';
+  updateCart(); closeModal('checkoutModal');
+  document.getElementById('successModal').classList.add('open');
+  document.getElementById('checkoutForm').reset(); setPay('cod');
+}
+let toastTimer;
+function showToast(msg){
+  const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show');
+  clearTimeout(toastTimer); toastTimer=setTimeout(()=>t.classList.remove('show'), 2600);
+}
+document.getElementById('fCard').addEventListener('input', e=>{ e.target.value=e.target.value.replace(/\D/g,'').slice(0,16).replace(/(\d{4})(?=\d)/g,'$1 '); });
+document.getElementById('fExp').addEventListener('input', e=>{ let v=e.target.value.replace(/\D/g,'').slice(0,4); if(v.length>2) v=v.slice(0,2)+'/'+v.slice(2); e.target.value=v; });
+document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeModal('productModal'); closeModal('checkoutModal'); closeModal('successModal'); toggleCart(false); } });
+buildFilters(); renderProducts(); updateCart();
+</script>
+</body>
+</html>
