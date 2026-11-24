@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>لوما بيوتي | Luma Beauty — متجر التجميل والعناية</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--rose:#d6336c;--rose-dark:#b02455;--pink:#f9a8c0;--pink-soft:#fdeef3;--cream:#fffaf5;--gold:#c9a227;--ink:#3a2a30;--muted:#8a6d78;--green:#1e9e6a;--border:#f3d9e2}
+body{font-family:'Cairo',system-ui,sans-serif;background:var(--cream);color:var(--ink);line-height:1.7}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+.topbar{background:var(--rose);color:#fff;text-align:center;padding:8px 14px;font-size:14px;font-weight:700}
+.topbar span{color:#ffe3ee}
+header{position:sticky;top:0;z-index:50;background:rgba(255,250,245,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+.header-inner{max-width:1200px;margin:auto;padding:14px 20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:10px;font-size:26px;font-weight:900;color:var(--rose)}
+.logo .mark{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,#f9a8c0,#d6336c);display:grid;place-items:center;font-size:24px;box-shadow:0 6px 16px rgba(214,51,108,.3)}
+.logo small{display:block;font-size:11px;letter-spacing:3px;color:var(--muted);font-weight:700}
+.search-wrap{flex:1;min-width:220px;position:relative}
+.search-wrap input{width:100%;padding:12px 44px 12px 16px;border:2px solid var(--border);border-radius:999px;background:#fff;font-family:inherit;font-size:15px;outline:none}
+.search-wrap input:focus{border-color:var(--rose)}
+.search-wrap .icon{position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:18px}
+.cart-btn{position:relative;background:var(--rose);color:#fff;border:none;padding:12px 20px;border-radius:999px;font-weight:800;font-size:15px;box-shadow:0 6px 16px rgba(214,51,108,.3)}
+.cart-btn:hover{background:var(--rose-dark)}
+.cart-count{position:absolute;top:-8px;left:-8px;background:var(--gold);color:#fff;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:13px;border:2px solid #fff}
+.hero{max-width:1200px;margin:26px auto 10px;padding:0 20px;display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:center}
+.hero-text h1{font-size:clamp(30px,5vw,52px);line-height:1.25;font-weight:900}
+.hero-text h1 em{color:var(--rose);font-style:normal}
+.hero-text p{color:var(--muted);font-size:17px;margin:12px 0 20px;max-width:560px}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+.btn-primary{background:var(--rose);color:#fff;border:none;padding:13px 26px;border-radius:999px;font-weight:800;font-size:16px}
+.btn-primary:hover{background:var(--rose-dark)}
+.btn-ghost{background:#fff;color:var(--rose);border:2px solid var(--rose);padding:11px 24px;border-radius:999px;font-weight:800;font-size:16px}
+.hero-stats{display:flex;gap:22px;margin-top:22px;flex-wrap:wrap}
+.hero-stats b{font-size:22px;color:var(--rose);display:block;line-height:1.2}
+.hero-stats span{font-size:13px;color:var(--muted)}
+.hero-visual{background:linear-gradient(135deg,#ffe0ea,#fff0d6);border-radius:28px;padding:28px;text-align:center;border:1px solid var(--border)}
+.hero-visual .big{font-size:88px;line-height:1}
+.hero-visual h3{font-size:22px;margin:10px 0 6px}
+.hero-visual p{color:var(--muted);font-size:14px}
+.hero-visual .price-tag{display:inline-block;background:#fff;border-radius:999px;padding:8px 16px;font-weight:900;color:var(--rose);margin-top:12px;box-shadow:0 4px 12px rgba(0,0,0,.06)}
+.trust{max-width:1200px;margin:18px auto;padding:0 20px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.trust div{background:#fff;border:1px solid var(--border);border-radius:16px;padding:14px;text-align:center;font-size:14px;font-weight:700}
+.trust div span{display:block;font-size:22px}
+.toolbar{max-width:1200px;margin:22px auto 0;padding:0 20px}
+.toolbar h2{font-size:28px;font-weight:900}
+.toolbar p{color:var(--muted);margin-bottom:16px}
+.filters{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.filter-btn{border:2px solid var(--border);background:#fff;padding:9px 18px;border-radius:999px;font-weight:700;font-size:15px}
+.filter-btn.active{background:var(--rose);color:#fff;border-color:var(--rose)}
+.sort-wrap{margin-inline-start:auto;display:flex;align-items:center;gap:8px;font-weight:700;font-size:14px}
+.sort-wrap select{padding:10px 12px;border:2px solid var(--border);border-radius:12px;font-family:inherit;font-size:14px;background:#fff}
+.results-count{color:var(--muted);font-size:14px;margin:14px 0 0}
+.grid{max-width:1200px;margin:16px auto 40px;padding:0 20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
+.card{background:#fff;border:1px solid var(--border);border-radius:22px;overflow:hidden;transition:.2s;position:relative;display:flex;flex-direction:column}
+.card:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(214,51,108,.14)}
+.card-visual{height:170px;display:grid;place-items:center;font-size:72px;position:relative}
+.card-visual .badge{position:absolute;top:12px;right:12px;background:var(--rose);color:#fff;font-size:12px;font-weight:800;padding:5px 10px;border-radius:999px}
+.card-visual .badge.gold{background:var(--gold)}
+.card-body{padding:18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card-cat{font-size:12px;font-weight:800;color:var(--rose);letter-spacing:.5px}
+.card-body h3{font-size:18px;line-height:1.4}
+.stars{color:#f5a623;font-size:15px;letter-spacing:1px}
+.stars small{color:var(--muted);font-size:13px}
+.card-desc{color:var(--muted);font-size:14px;line-height:1.6}
+.price-row{display:flex;align-items:baseline;gap:10px;margin-top:auto}
+.price{font-size:22px;font-weight:900;color:var(--rose)}
+.old-price{color:#b9a3ab;text-decoration:line-through;font-size:15px}
+.card-actions{display:flex;gap:8px;margin-top:6px}
+.add-btn{flex:1;background:var(--rose);color:#fff;border:none;padding:11px;border-radius:12px;font-weight:800;font-size:15px}
+.add-btn:hover{background:var(--rose-dark)}
+.view-btn{background:var(--pink-soft);color:var(--rose);border:none;padding:11px 14px;border-radius:12px;font-weight:800}
+.empty{max-width:1200px;margin:20px auto;padding:50px 20px;text-align:center;color:var(--muted);font-size:18px;background:#fff;border:1px dashed var(--border);border-radius:20px}
+.features{max-width:1200px;margin:0 auto 40px;padding:0 20px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.features article{background:#fff;border:1px solid var(--border);border-radius:20px;padding:22px}
+.features h3{margin-bottom:6px}
+.features p{color:var(--muted);font-size:14px}
+footer{background:#2d1a22;color:#f3d9e2;padding:36px 20px;text-align:center}
+footer b{color:#fff;font-size:20px}
+footer p{font-size:14px;opacity:.85;margin-top:8px}
+/* Drawer */
+.overlay{position:fixed;inset:0;background:rgba(45,26,34,.55);opacity:0;pointer-events:none;transition:.25s;z-index:90}
+.overlay.show{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;left:0;height:100%;width:min(420px,94vw);background:#fff;z-index:100;transform:translateX(-105%);transition:.3s;display:flex;flex-direction:column;box-shadow:0 0 40px rgba(0,0,0,.2)}
+.drawer.open{transform:none}
+.drawer-head{padding:18px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.drawer-head h3{font-size:20px}
+.close-x{background:#fdeef3;border:none;width:36px;height:36px;border-radius:50%;font-size:18px;color:var(--rose)}
+.ship-bar{padding:14px 20px;background:var(--pink-soft);font-size:13px;font-weight:700}
+.ship-bar .bar{height:8px;background:#fff;border-radius:99px;margin-top:8px;overflow:hidden}
+.ship-bar .bar i{display:block;height:100%;background:var(--green);border-radius:99px;transition:.3s}
+.cart-items{flex:1;overflow:auto;padding:16px 20px;display:flex;flex-direction:column;gap:12px}
+.cart-empty{text-align:center;color:var(--muted);padding:40px 10px}
+.cart-item{display:flex;gap:12px;border:1px solid var(--border);border-radius:16px;padding:12px;align-items:center}
+.cart-item .thumb{width:58px;height:58px;border-radius:12px;display:grid;place-items:center;font-size:30px;flex-shrink:0}
+.cart-item h4{font-size:15px;line-height:1.4}
+.cart-item .p{color:var(--rose);font-weight:900}
+.qty{display:flex;align-items:center;gap:8px;margin-top:6px}
+.qty button{width:28px;height:28px;border-radius:8px;border:1px solid var(--border);background:#fff;font-weight:900}
+.remove-btn{margin-inline-start:auto;background:none;border:none;color:#c0392b;font-size:20px}
+.drawer-foot{border-top:1px solid var(--border);padding:18px 20px}
+.promo-row{display:flex;gap:8px;margin-bottom:12px}
+.promo-row input{flex:1;padding:11px;border:2px dashed var(--pink);border-radius:12px;font-family:inherit}
+.promo-row button{background:var(--ink);color:#fff;border:none;padding:0 18px;border-radius:12px;font-weight:800}
+.promo-msg{font-size:13px;font-weight:700;margin:-6px 0 10px}
+.promo-msg.ok{color:var(--green)} .promo-msg.err{color:#c0392b}
+.total-row{display:flex;justify-content:space-between;font-size:15px;margin:4px 0}
+.total-row.grand{font-size:20px;font-weight:900;border-top:1px dashed var(--border);padding-top:10px;margin-top:10px}
+.total-row.grand span:last-child{color:var(--rose)}
+.checkout-btn{width:100%;background:var(--rose);color:#fff;border:none;padding:14px;border-radius:14px;font-weight:900;font-size:17px;margin-top:12px}
+/* Modal */
+.modal{position:fixed;inset:0;z-index:110;display:none;align-items:center;justify-content:center;padding:16px}
+.modal.show{display:flex}
+.modal-bg{position:absolute;inset:0;background:rgba(45,26,34,.6)}
+.modal-box{position:relative;background:#fff;border-radius:24px;max-width:640px;width:100%;max-height:92vh;overflow:auto;padding:26px}
+.modal-box h2{font-size:24px;margin-bottom:4px}
+.modal-box .sub{color:var(--muted);font-size:14px;margin-bottom:16px}
+.qv{display:grid;grid-template-columns:150px 1fr;gap:18px;align-items:start}
+.qv-visual{height:150px;border-radius:18px;display:grid;place-items:center;font-size:64px}
+.qv p{color:var(--muted);font-size:15px}
+.qv .price{font-size:26px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.form-grid label{display:block;font-weight:700;font-size:14px;margin-bottom:4px}
+.form-grid input,.form-grid select,.form-grid textarea{width:100%;padding:12px;border:2px solid var(--border);border-radius:12px;font-family:inherit;font-size:15px;outline:none}
+.form-grid input:focus,.form-grid select:focus,.form-grid textarea:focus{border-color:var(--rose)}
+.form-grid .full{grid-column:1/-1}
+.field-err{color:#c0392b;font-size:12px;min-height:16px;display:block}
+.cod-box{background:#eafaf1;border:1px solid #bfe8d2;border-radius:14px;padding:14px;font-weight:700;color:#146c43}
+.order-success{text-align:center;padding:10px 0}
+.order-success .check{width:76px;height:76px;border-radius:50%;background:#eafaf1;color:var(--green);font-size:40px;display:grid;place-items:center;margin:0 auto 14px}
+.order-no{background:var(--pink-soft);border-radius:12px;padding:10px;font-weight:900;color:var(--rose);font-size:18px;margin:12px 0}
+.summary{background:#fffaf5;border:1px solid var(--border);border-radius:14px;padding:16px;text-align:right;margin-top:14px}
+.summary div{display:flex;justify-content:space-between;padding:4px 0;font-size:15px}
+.toast{position:fixed;bottom:22px;right:50%;transform:translateX(50%) translateY(80px);background:var(--ink);color:#fff;padding:12px 22px;border-radius:999px;font-weight:700;z-index:200;transition:.3s;opacity:0;white-space:nowrap}
+.toast.show{transform:translateX(50%);opacity:1}
+@media(max-width:760px){
+  .hero{grid-template-columns:1fr}
+  .trust{grid-template-columns:repeat(2,1fr)}
+  .features{grid-template-columns:1fr}
+  .form-grid{grid-template-columns:1fr}
+  .qv{grid-template-columns:1fr}
+  .qv-visual{height:120px}
+  .sort-wrap{margin-inline-start:0;width:100%}
+  .sort-wrap select{flex:1}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">✨ شحن مجاني للطلبات فوق 500 جنيه &nbsp;|&nbsp; كود خصم <span>LUMA20</span> يعطيك 20% خصم ✨</div>
+
+<header>
+  <div class="header-inner">
+    <a class="logo" href="#"><span class="mark">💄</span><span>لوما بيوتي<small>LUMA BEAUTY</small></span></a>
+    <div class="search-wrap">
+      <span class="icon">🔍</span>
+      <input type="search" id="searchInput" placeholder="ابحثي عن سيروم، أحمر شفاه، شامبو…" aria-label="بحث">
+    </div>
+    <button class="cart-btn" onclick="openCart()">🛍️ سلة التسوق <span class="cart-count" id="cartCount">0</span></button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-text">
+    <h1>جمالكِ يبدأ من هنا <em>بمنتجات أصلية 100%</em></h1>
+    <p>عناية بالبشرة، مكياج، وعناية بالشعر — منتجات مختارة بعناية، أسعار مناسبة، وتوصيل سريع لباب البيت في كل محافظات مصر. الدفع عند الاستلام.</p>
+    <div class="hero-cta">
+      <button class="btn-primary" onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">تسوقي الآن 🛍️</button>
+      <button class="btn-ghost" onclick="setCategory('skincare');document.getElementById('shop').scrollIntoView({behavior:'smooth'})">العناية بالبشرة ✨</button>
+    </div>
+    <div class="hero-stats">
+      <div><b>+15,000</b><span>عميلة سعيدة</span></div>
+      <div><b>4.8 ★</b><span>متوسط التقييم</span></div>
+      <div><b>24 ساعة</b><span>توصيل داخل القاهرة والجيزة</span></div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="big">🌸💄✨</div>
+    <h3>عرض الافتتاح: خصم حتى 25%</h3>
+    <p>على مجموعة مختارة من السيروم والكريمات وأحمر الشفاه — لفترة محدودة.</p>
+    <span class="price-tag">استخدمي كود: LUMA20</span>
+  </div>
+</section>
+
+<div class="trust">
+  <div><span>🚚</span> توصيل سريع لكل المحافظات</div>
+  <div><span>💵</span> الدفع عند الاستلام</div>
+  <div><span>✅</span> منتجات أصلية 100%</div>
+  <div><span>↩️</span> استبدال خلال 14 يوم</div>
+</div>
+
+<main class="toolbar" id="shop">
+  <h2>تسوقي منتجاتنا</h2>
+  <p>اختاري من العناية بالبشرة والمكياج والشعر — كل منتج بتقييمات حقيقية من عميلاتنا.</p>
+  <div class="filters" id="filters">
+    <button class="filter-btn active" data-cat="all" onclick="setCategory('all')">الكل</button>
+    <button class="filter-btn" data-cat="skincare" onclick="setCategory('skincare')">🧴 العناية بالبشرة</button>
+    <button class="filter-btn" data-cat="makeup" onclick="setCategory('makeup')">💄 المكياج</button>
+    <button class="filter-btn" data-cat="hair" onclick="setCategory('hair')">💇‍♀️ العناية بالشعر</button>
+    <div class="sort-wrap">
+      <label for="sortSelect">ترتيب حسب:</label>
+      <select id="sortSelect" onchange="setSort(this.value)">
+        <option value="popular">الأكثر رواجاً</option>
+        <option value="price-low">السعر: من الأقل للأعلى</option>
+        <option value="price-high">السعر: من الأعلى للأقل</option>
+        <option value="rating">الأعلى تقييماً</option>
+      </select>
+    </div>
+  </div>
+  <p class="results-count" id="resultsCount"></p>
+</main>
+
+<div class="grid" id="productGrid"></div>
+<div class="empty" id="emptyState" style="display:none">😔 لا توجد نتائج مطابقة لبحثك — جرّبي كلمة أخرى مثل «سيروم» أو «شامبو».</div>
+
+<section class="features">
+  <article><h3>🌿 مكونات آمنة على البشرة</h3><p>نختار منتجات بمكونات لطيفة ومناسبة للبشرة الحساسة، ونكتب المكونات بوضوح على كل منتج.</p></article>
+  <article><h3>💬 استشارة مجانية</h3><p>مش عارفة تختاري؟ ابعتي لنا نوع بشرتك أو شعرك على واتساب وهنرشح لك الأنسب — بدون أي تكلفة.</p></article>
+  <article><h3>🎁 هدية مع كل طلب</h3><p>كل طلب فوق 500 جنيه بيوصلك معاه عينة هدية من منتجاتنا الجديدة لتجربيها قبل الكل.</p></article>
+</section>
+
+<footer>
+  <b>لوما بيوتي | Luma Beauty</b>
+  <p>متجر تجميل مصري — القاهرة، مصر &nbsp;•&nbsp; التوصيل متاح لكل المحافظات &nbsp;•&nbsp; الدفع عند الاستلام</p>
+  <p>© 2026 لوما بيوتي — جميع الحقوق محفوظة</p>
+</footer>
+
+<!-- Cart drawer -->
+<div class="overlay" id="overlay" onclick="closeAll()"></div>
+<aside class="drawer" id="cartDrawer" aria-label="سلة التسوق">
+  <div class="drawer-head"><h3>🛍️ سلة التسوق</h3><button class="close-x" onclick="closeAll()">✕</button></div>
+  <div class="ship-bar" id="shipBar"></div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="drawer-foot">
+    <div class="promo-row">
+      <input type="text" id="promoInput" placeholder="كود الخصم — جرّبي LUMA20">
+      <button onclick="applyPromo()">تطبيق</button>
+    </div>
+    <div class="promo-msg" id="promoMsg"></div>
+    <div class="total-row"><span>المجموع الفرعي</span><span id="subTotal">0 ج.م</span></div>
+    <div class="total-row" id="discountRow" style="display:none;color:var(--green)"><span>الخصم (LUMA20 −20%)</span><span id="discountVal">0 ج.م</span></div>
+    <div class="total-row"><span>الشحن</span><span id="shipVal">—</span></div>
+    <div class="total-row grand"><span>الإجمالي</span><span id="grandTotal">0 ج.م</span></div>
+    <button class="checkout-btn" onclick="openCheckout()">إتمام الطلب — الدفع عند الاستلام 💵</button>
+  </div>
+</aside>
+
+<!-- Quick view modal -->
+<div class="modal" id="quickModal">
+  <div class="modal-bg" onclick="closeAll()"></div>
+  <div class="modal-box" id="quickBox"></div>
+</div>
+
+<!-- Checkout modal -->
+<div class="modal" id="checkoutModal">
+  <div class="modal-bg" onclick="closeAll()"></div>
+  <div class="modal-box">
+    <div id="checkoutStep">
+      <h2>إتمام الطلب</h2>
+      <p class="sub">املئي بيانات التوصيل — الدفع كاش عند الاستلام، بدون أي دفع مقدم.</p>
+      <form id="checkoutForm" onsubmit="submitOrder(event)" novalidate>
+        <div class="form-grid">
+          <div><label for="fName">الاسم بالكامل *</label><input id="fName" type="text" placeholder="مثال: سارة أحمد محمد"><span class="field-err" id="eName"></span></div>
+          <div><label for="fPhone">رقم الموبايل *</label><input id="fPhone" type="tel" dir="ltr" placeholder="01xxxxxxxxx"><span class="field-err" id="ePhone"></span></div>
+          <div class="full"><label for="fAddress">العنوان بالتفصيل *</label><input id="fAddress" type="text" placeholder="اسم الشارع، رقم العمارة، رقم الشقة، علامة مميزة"><span class="field-err" id="eAddress"></span></div>
+          <div><label for="fCity">المحافظة / المدينة *</label>
+            <select id="fCity">
+              <option value="">اختاري المحافظة…</option>
+              <option>القاهرة</option><option>الجيزة</option><option>الإسكندرية</option><option>الدقهلية</option><option>الشرقية</option><option>الغربية</option><option>المنوفية</option><option>القليوبية</option><option>أسيوط</option><option>المنيا</option><option>سوهاج</option><option>قنا</option><option>الأقصر</option><option>أسوان</option><option>البحر الأحمر</option><option>أخرى</option>
+            </select><span class="field-err" id="eCity"></span></div>
+          <div><label for="fNotes">ملاحظات (اختياري)</label><input id="fNotes" type="text" placeholder="مثال: الاتصال قبل التوصيل"></div>
+        </div>
+        <div class="cod-box" style="margin-top:14px">💵 طريقة الدفع: <b>الدفع عند الاستلام (Cash on Delivery)</b> — ادفعي كاش لمندوب التوصيل عند استلام طلبك.</div>
+        <div class="summary" id="checkoutSummary"></div>
+        <button type="submit" class="checkout-btn">تأكيد الطلب ✅</button>
+        <button type="button" class="btn-ghost" style="width:100%;margin-top:10px" onclick="closeAll();openCart()">العودة للسلة</button>
+      </form>
+    </div>
+    <div id="confirmStep" style="display:none"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const PRODUCTS=[
+{id:1,cat:'skincare',name:'سيروم فيتامين سي للتفتيح والنضارة',price:450,old:550,rating:4.8,reviews:342,emoji:'🍊',bg:'#fff0d6',desc:'سيروم خفيف بفيتامين سي 15% يوحّد لون البشرة ويمنحها إشراقة طبيعية خلال أسبوعين.',badge:'خصم 18%'},
+{id:2,cat:'skincare',name:'كريم مرطب بالهيالورونيك أسيد',price:380,old:null,rating:4.9,reviews:512,emoji:'🧴',bg:'#e3f2fd',desc:'ترطيب عميق يدوم 48 ساعة، مناسب لكل أنواع البشرة حتى الحساسة، ولا يترك ملمساً دهنياً.',badge:'الأكثر مبيعاً'},
+{id:3,cat:'skincare',name:'غسول الوجه بالشاي الأخضر',price:220,old:280,rating:4.7,reviews:289,emoji:'🌿',bg:'#e8f5e9',desc:'غسول لطيف ينظّف المسام بعمق ويقلل اللمعان والدهون الزائدة بدون ما ينشّف البشرة.',badge:'خصم 21%'},
+{id:4,cat:'skincare',name:'كريم واقي شمس SPF 50+ للوجه',price:320,old:null,rating:4.8,reviews:421,emoji:'☀️',bg:'#fff8e1',desc:'حماية عالية من الشمس بملمس خفيف لا يترك أثراً أبيض، ومقاوم للماء والعرق.',badge:null},
+{id:5,cat:'skincare',name:'ماسك الطين الوردي لتنقية البشرة',price:260,old:320,rating:4.6,reviews:198,emoji:'🌸',bg:'#fce4ec',desc:'ماسك طين وردي ينقّي المسام ويشدّ البشرة ويتركها ناعمة ومشرقة من أول استخدام.',badge:'خصم 19%'},
+{id:6,cat:'makeup',name:'أحمر شفاه مطفي — وردي دافئ',price:290,old:null,rating:4.9,reviews:634,emoji:'💄',bg:'#fce4ec',desc:'لون وردي دافئ ثابت حتى 8 ساعات، بملمس مطفي مريح ولا ينشّف الشفاه.',badge:'الأكثر مبيعاً'},
+{id:7,cat:'makeup',name:'فاونديشن سائل بتغطية كاملة',price:520,old:650,rating:4.7,reviews:456,emoji:'🎨',bg:'#f3e5f5',desc:'تغطية كاملة بملمس طبيعي خفيف، يخفي العيوب ويوحّد اللون ويدوم طوال اليوم.',badge:'خصم 20%'},
+{id:8,cat:'makeup',name:'باليت ظلال عيون — درجات النود',price:480,old:null,rating:4.8,reviews:377,emoji:'👁️',bg:'#fff3e0',desc:'12 درجة نود مطفية ولامعة بألوان ثابتة وسهلة الدمج، لإطلالة نهارية أو سهرة.',badge:null},
+{id:9,cat:'makeup',name:'ماسكارا تكثيف وتطويل الرموش',price:240,old:300,rating:4.6,reviews:512,emoji:'✨',bg:'#e8eaf6',desc:'فرشاة كثيفة تطوّل الرموش وتكثّفها من أول طبقة، ولا تتكتل أو تتلطخ طوال اليوم.',badge:'خصم 20%'},
+{id:10,cat:'makeup',name:'بلاشر خدود وردي طبيعي',price:210,old:null,rating:4.9,reviews:298,emoji:'🌷',bg:'#fce4ec',desc:'بلاشر بودرة بلون وردي طبيعي يمنح الخدود تورّداً صحياً يدوم، وسهل الدمج.',badge:'جديد'},
+{id:11,cat:'hair',name:'شامبو زيت الأرغان للشعر الجاف',price:280,old:null,rating:4.8,reviews:445,emoji:'🧴',bg:'#fff8e1',desc:'شامبو مغذٍّ بزيت الأرغان المغربي ينعّم الشعر الجاف ويقلل التقصف، خالٍ من السلفات.',badge:null},
+{id:12,cat:'hair',name:'زيت أرغان مغربي أصلي 100 مل',price:350,old:420,rating:4.9,reviews:523,emoji:'🫗',bg:'#fffde7',desc:'زيت أرغان نقي يرطّب الشعر ويمنحه لمعاناً، ويمكن استخدامه أيضاً للبشرة والأظافر.',badge:'الأكثر مبيعاً'},
+{id:13,cat:'hair',name:'ماسك شعر بالكيراتين لإصلاح التلف',price:390,old:null,rating:4.7,reviews:267,emoji:'💆‍♀️',bg:'#e0f2f1',desc:'ماسك علاجي بالكيراتين يصلح الشعر التالف من الصبغة والحرارة ويعيد له قوته ونعومته.',badge:null},
+{id:14,cat:'hair',name:'سيروم شعر ضد الهيشان والتقصف',price:310,old:null,rating:4.8,reviews:389,emoji:'💧',bg:'#e3f2fd',desc:'سيروم خفيف يتحكم في الهيشان ويحمي الأطراف المتقصفة، بلمسة لامعة بدون دهون.',badge:'جديد'},
+{id:15,cat:'hair',name:'سبراي حماية الشعر من الحرارة',price:230,old:290,rating:4.6,reviews:176,emoji:'🔥',bg:'#fff3e0',desc:'سبراي يحمي شعرك من حرارة المكواة والسيشوار حتى 230 درجة، ويحافظ على نعومته.',badge:'خصم 21%'}
+];
+const CAT_LABEL={skincare:'العناية بالبشرة',makeup:'المكياج',hair:'العناية بالشعر'};
+let currentCat='all', currentSort='popular', query='';
+let cart={}; // id -> qty
+let promoApplied=false;
+const fmt=n=>n.toLocaleString('en-US')+' ج.م';
+function stars(r){
+  const full=Math.round(r);
+  return '★'.repeat(full)+'☆'.repeat(5-full);
+}
+function getFiltered(){
+  let list=PRODUCTS.filter(p=>(currentCat==='all'||p.cat===currentCat));
+  if(query){const q=query.trim(); list=list.filter(p=>p.name.includes(q)||p.desc.includes(q)||CAT_LABEL[p.cat].includes(q));}
+  if(currentSort==='price-low') list=[...list].sort((a,b)=>a.price-b.price);
+  else if(currentSort==='price-high') list=[...list].sort((a,b)=>b.price-a.price);
+  else if(currentSort==='rating') list=[...list].sort((a,b)=>b.rating-a.rating);
+  else list=[...list].sort((a,b)=>b.reviews-a.reviews);
+  return list;
+}
+function renderProducts(){
+  const list=getFiltered();
+  const grid=document.getElementById('productGrid');
+  document.getElementById('resultsCount').textContent='عرض '+list.length+' منتج من أصل '+PRODUCTS.length+' منتج';
+  document.getElementById('emptyState').style.display=list.length?'none':'block';
+  grid.innerHTML=list.map(p=>`
+    <article class="card">
+      <div class="card-visual" style="background:${p.bg}">${p.emoji}${p.badge?`<span class="badge ${p.badge==='الأكثر مبيعاً'?'gold':''}">${p.badge}</span>`:''}</div>
+      <div class="card-body">
+        <span class="card-cat">${CAT_LABEL[p.cat]}</span>
+        <h3>${p.name}</h3>
+        <div class="stars">${stars(p.rating)} <small>${p.rating} (${p.reviews} تقييم)</small></div>
+        <p class="card-desc">${p.desc}</p>
+        <div class="price-row"><span class="price">${fmt(p.price)}</span>${p.old?`<span class="old-price">${fmt(p.old)}</span>`:''}</div>
+        <div class="card-actions">
+          <button class="add-btn" onclick="addToCart(${p.id})">أضيفي للسلة 🛍️</button>
+          <button class="view-btn" onclick="openQuickView(${p.id})">عرض سريع</button>
+        </div>
+      </div>
+    </article>`).join('');
+}
+function setCategory(cat){
+  currentCat=cat;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.toggle('active',b.dataset.cat===cat));
+  renderProducts();
+}
+function setSort(v){currentSort=v;renderProducts();}
+document.getElementById('searchInput').addEventListener('input',e=>{query=e.target.value;renderProducts();});
+function cartCount(){return Object.values(cart).reduce((a,b)=>a+b,0);}
+function cartSubtotal(){return Object.entries(cart).reduce((s,[id,q])=>{const p=PRODUCTS.find(x=>x.id==id);return s+(p?p.price*q:0);},0);}
+function totals(){
+  const sub=cartSubtotal();
+  const discount=promoApplied?Math.round(sub*0.20):0;
+  const after=sub-discount;
+  const ship=after===0?0:(after>=500?0:35);
+  return {sub,discount,after,ship,grand:after+ship};
+}
+function updateCartUI(){
+  document.getElementById('cartCount').textContent=cartCount();
+  const items=document.getElementById('cartItems');
+  const t=totals();
+  const remaining=500-t.after;
+  document.getElementById('shipBar').innerHTML=t.after===0
+    ? '🚚 الشحن مجاني للطلبات فوق 500 جنيه — أضيفي منتجات للسلة!'
+    : (remaining>0
+      ? `🚚 أضيفي منتجات بقيمة <b>${fmt(remaining)}</b> واحصلي على شحن مجاني! <div class="bar"><i style="width:${Math.min(100,t.after/500*100)}%"></i></div>`
+      : `🎉 مبروك! طلبك مؤهل <b>للشحن المجاني</b> <div class="bar"><i style="width:100%"></i></div>`);
+  if(!cartCount()){
+    items.innerHTML='<div class="cart-empty"><div style="font-size:52px">🛍️</div><p>سلتك فارغة<br>تصفحي المنتجات وأضيفي ما يعجبك</p></div>';
+  } else {
+    items.innerHTML=Object.entries(cart).map(([id,q])=>{
+      const p=PRODUCTS.find(x=>x.id==id);
+      return `<div class="cart-item">
+        <div class="thumb" style="background:${p.bg}">${p.emoji}</div>
+        <div style="flex:1"><h4>${p.name}</h4><div class="p">${fmt(p.price)}</div>
+        <div class="qty"><button onclick="changeQty(${p.id},-1)">−</button><b>${q}</b><button onclick="changeQty(${p.id},1)">+</button></div></div>
+        <button class="remove-btn" onclick="removeFromCart(${p.id})" title="حذف">🗑️</button>
+      </div>`;
+    }).join('');
+  }
+  document.getElementById('subTotal').textContent=fmt(t.sub);
+  document.getElementById('discountRow').style.display=t.discount?'flex':'none';
+  document.getElementById('discountVal').textContent='− '+fmt(t.discount);
+  document.getElementById('shipVal').textContent=t.after===0?'—':(t.ship===0?'مجاني 🎉':fmt(t.ship));
+  document.getElementById('grandTotal').textContent=fmt(t.grand);
+}
+function addToCart(id){
+  cart[id]=(cart[id]||0)+1;
+  updateCartUI();
+  const p=PRODUCTS.find(x=>x.id===id);
+  showToast('✅ تمت إضافة «'+p.name+'» إلى السلة');
+}
+function changeQty(id,d){cart[id]+=d; if(cart[id]<=0) delete cart[id]; updateCartUI();}
+function removeFromCart(id){delete cart[id]; updateCartUI();}
+function applyPromo(){
+  const code=document.getElementById('promoInput').value.trim().toUpperCase();
+  const msg=document.getElementById('promoMsg');
+  if(code==='LUMA20'){promoApplied=true;msg.textContent='🎉 تم تطبيق خصم 20% بنجاح!';msg.className='promo-msg ok';}
+  else{promoApplied=false;msg.textContent='❌ كود غير صحيح — جرّبي LUMA20';msg.className='promo-msg err';}
+  updateCartUI();
+}
+function openCart(){closeAll();document.getElementById('cartDrawer').classList.add('open');document.getElementById('overlay').classList.add('show');updateCartUI();}
+function closeAll(){
+  document.getElementById('cartDrawer').classList.remove('open');
+  document.getElementById('overlay').classList.remove('show');
+  document.getElementById('quickModal').classList.remove('show');
+  document.getElementById('checkoutModal').classList.remove('show');
+}
+function openQuickView(id){
+  const p=PRODUCTS.find(x=>x.id===id);
+  document.getElementById('quickBox').innerHTML=`
+    <button class="close-x" style="position:absolute;top:16px;left:16px" onclick="closeAll()">✕</button>
+    <div class="qv">
+      <div class="qv-visual" style="background:${p.bg}">${p.emoji}</div>
+      <div>
+        <span class="card-cat">${CAT_LABEL[p.cat]}</span>
+        <h2 style="margin:4px 0">${p.name}</h2>
+        <div class="stars">${stars(p.rating)} <small>${p.rating} (${p.reviews} تقييم من عميلاتنا)</small></div>
+        <p style="margin:10px 0">${p.desc}</p>
+        <div class="price-row"><span class="price">${fmt(p.price)}</span>${p.old?`<span class="old-price">${fmt(p.old)}</span>`:''}</div>
+        <p style="font-size:14px;color:var(--green);font-weight:700;margin:6px 0">✅ متوفر — التوصيل خلال 24–48 ساعة</p>
+        <div style="display:flex;gap:8px;margin-top:10px">
+          <button class="btn-primary" style="flex:1" onclick="addToCart(${p.id});closeAll();openCart()">أضيفي للسلة 🛍️</button>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:18px;background:var(--pink-soft);border-radius:14px;padding:14px">
+      <b>💬 ماذا قالت عميلاتنا؟</b>
+      <p style="font-size:14px;color:var(--muted);margin-top:6px">«منتج رائع، النتيجة ظهرت من أول أسبوع، والتغليف كان جميل جداً.» — سارة م. ★★★★★</p>
+      <p style="font-size:14px;color:var(--muted)">«وصلني بسرعة والتوصيل كان محترم، هطلب منه تاني أكيد.» — مريم أ. ★★★★★</p>
+    </div>`;
+  document.getElementById('quickModal').classList.add('show');
+}
+function openCheckout(){
+  if(!cartCount()){showToast('🛍️ سلتك فارغة — أضيفي منتجاً أولاً');return;}
+  closeAll();
+  document.getElementById('checkoutStep').style.display='block';
+  document.getElementById('confirmStep').style.display='none';
+  const t=totals();
+  const lines=Object.entries(cart).map(([id,q])=>{const p=PRODUCTS.find(x=>x.id==id);return `<div><span>${p.name} × ${q}</span><span>${fmt(p.price*q)}</span></div>`;}).join('');
+  document.getElementById('checkoutSummary').innerHTML='<b>ملخص طلبك</b>'+lines+
+    (t.discount?`<div><span>خصم LUMA20</span><span>− ${fmt(t.discount)}</span></div>`:'')+
+    `<div><span>الشحن</span><span>${t.ship===0?'مجاني':fmt(t.ship)}</span></div>`+
+    `<div style="font-weight:900;border-top:1px dashed var(--border);padding-top:6px"><span>الإجمالي عند الاستلام</span><span style="color:var(--rose)">${fmt(t.grand)}</span></div>`;
+  document.getElementById('checkoutModal').classList.add('show');
+}
+function submitOrder(e){
+  e.preventDefault();
+  const name=document.getElementById('fName').value.trim();
+  const phone=document.getElementById('fPhone').value.trim();
+  const address=document.getElementById('fAddress').value.trim();
+  const city=document.getElementById('fCity').value;
+  let ok=true;
+  const setErr=(id,msg)=>{document.getElementById(id).textContent=msg; if(msg) ok=false;};
+  setErr('eName', name.length<3?'من فضلك اكتبي الاسم بالكامل':'' );
+  setErr('ePhone', /^01[0-9]{9}$/.test(phone)?'':'رقم موبايل مصري صحيح يبدأ بـ 01 ويتكون من 11 رقماً');
+  setErr('eAddress', address.length<8?'من فضلك اكتبي العنوان بالتفصيل':'' );
+  setErr('eCity', city?'':'اختاري المحافظة');
+  if(!ok) return;
+  const orderNo='LUMA-'+new Date().getFullYear()+String(Math.floor(100000+Math.random()*900000));
+  const t=totals();
+  const lines=Object.entries(cart).map(([id,q])=>{const p=PRODUCTS.find(x=>x.id==id);return `<div><span>${p.name} × ${q}</span><span>${fmt(p.price*q)}</span></div>`;}).join('');
+  document.getElementById('checkoutStep').style.display='none';
+  const conf=document.getElementById('confirmStep');
+  conf.style.display='block';
+  conf.innerHTML=`
+    <div class="order-success">
+      <div class="check">✓</div>
+      <h2>شكراً لكِ يا ${name.split(' ')[0]}! 🎉</h2>
+      <p class="sub">تم استلام طلبك بنجاح، وسيتم التواصل معكِ على <b dir="ltr">${phone}</b> لتأكيد التوصيل.</p>
+      <div class="order-no">رقم الطلب: ${orderNo}</div>
+      <p style="font-size:14px;color:var(--muted)">التوصيل إلى: ${address} — ${city}<br>طريقة الدفع: الدفع عند الاستلام 💵</p>
+      <div class="summary">${lines}
+        ${t.discount?`<div><span>خصم LUMA20</span><span>− ${fmt(t.discount)}</span></div>`:''}
+        <div><span>الشحن</span><span>${t.ship===0?'مجاني':fmt(t.ship)}</span></div>
+        <div style="font-weight:900;border-top:1px dashed var(--border);padding-top:6px"><span>الإجمالي</span><span style="color:var(--rose)">${fmt(t.grand)}</span></div>
+      </div>
+      <button class="btn-primary" style="width:100%;margin-top:18px" onclick="closeAll()">متابعة التسوق 🛍️</button>
+    </div>`;
+  cart={}; promoApplied=false; document.getElementById('promoInput').value=''; document.getElementById('promoMsg').textContent='';
+  updateCartUI();
+  document.getElementById('checkoutForm').reset();
+}
+let toastTimer;
+function showToast(msg){
+  const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show');
+  clearTimeout(toastTimer); toastTimer=setTimeout(()=>t.classList.remove('show'),2600);
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape') closeAll();});
+renderProducts();
+updateCartUI();
+</script>
+</body>
+</html>
